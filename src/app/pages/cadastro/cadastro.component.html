@@ -3,34 +3,210 @@
     <div class="container">
       <div class="row">
         <div class="col col-login mx-auto">
-          <form class="card" action="" method="post">
+          <form [formGroup]="formCadastro" class="card" (submit)="save($event)">
             <div class="card-body p-6">
               <div class="card-title">Será um prazer recebê-lo no QParceria</div>
               <div class="form-group">
                 <label class="form-label">Nome</label>
-                <input type="text" class="form-control" placeholder="Ex.: Gustavo dos Santos">
+                <input 
+                  formControlName="name"
+                  name="name"
+                  [(ngModel)]="user.name"
+                  class="form-control" 
+                  autocomplete="off">
+                  <div *ngIf="formCadastro.controls.name.invalid">
+                    <span *ngIf="formCadastro.controls.name.errors.required" class="form-control alert-danger">
+                        Nome obrigatório
+                    </span>
+                    <span *ngIf="formCadastro.controls.name.errors.minlength" class="form-control alert-danger">
+                        Tamanho mínimo do campo não atingido
+                    </span>
+                  </div>
               </div>
               <div class="form-group">
-                <label class="form-label">E-mail </label>
-                <input type="email" class="form-control" placeholder="ex.: email@hotmail.com">
+                <label class="form-label">Username</label>
+                <input 
+                  formControlName="username"
+                  name="username"
+                  [(ngModel)]="user.username"
+                  class="form-control" 
+                  autocomplete="off">
+                  <div *ngIf="formCadastro.controls.username.invalid">
+                    <span *ngIf="formCadastro.controls.username.errors.required" class="form-control alert-danger">
+                        Username obrigatório
+                    </span>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">E-mail</label>
+                <input 
+                  formControlName="email"
+                  name="email"
+                  [(ngModel)]="user.email"
+                  class="form-control" 
+                  autocomplete="off"
+                  type="email"
+                  placeholder="ex.: email@hotmail.com">
+                  <div *ngIf="formCadastro.controls.email.invalid">
+                    <span *ngIf="formCadastro.controls.email.errors.required" class="form-control alert-danger">
+                        E-mail obrigatório
+                    </span>
+                  </div>
               </div>
               <div class="form-group">
                 <label class="form-label">Senha</label>
-                <input type="password" class="form-control" placeholder="********">
+                <input 
+                  formControlName="password"
+                  name="password"
+                  [(ngModel)]="user.password"
+                  class="form-control" 
+                  autocomplete="off"
+                  type="password">
+                  <div *ngIf="formCadastro.controls.password.invalid">
+                    <span *ngIf="formCadastro.controls.password.errors.required" class="form-control alert-danger">
+                        Senha obrigatória
+                    </span>
+                  </div>
               </div>
-                <div class="form-group">
+              <div class="form-group">
+                <label class="form-label">Sexo</label>
+                <select 
+                  formControlName="gender"
+                  name="gender"
+                  [(ngModel)]="user.gender"
+                  class="form-control" 
+                  autocomplete="off">
+                  <option value="MASCULINO">Masculino</option>
+                  <option value="FEMININO">Feminino</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Data de nascimento</label>
+                <input 
+                  formControlName="birthDate"
+                  name="birthDate"
+                  [(ngModel)]="user.birthDate"
+                  class="form-control" 
+                  autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Telefone</label>
+                <input 
+                  formControlName="phone"
+                  name="phone"
+                  [(ngModel)]="user.phone"
+                  class="form-control" 
+                  autocomplete="off">
+              </div>              
+              <div class="card-title">Endereço</div>
+              <div class="form-group">
+                <label class="form-label">Logradouro</label>
+                <input 
+                  formControlName="street"
+                  name="street"
+                  [(ngModel)]="user.street"
+                  class="form-control" 
+                  autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Número</label>
+                <input 
+                  formControlName="number"
+                  name="number"
+                  [(ngModel)]="user.number"
+                  class="form-control" 
+                  autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Complemento</label>
+                <input 
+                  formControlName="complement"
+                  name="complement"
+                  [(ngModel)]="user.complement"
+                  class="form-control" 
+                  autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Bairro</label>
+                <input 
+                  formControlName="neighborhood"
+                  name="neighborhood"
+                  [(ngModel)]="user.neighborhood"
+                  class="form-control" 
+                  autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="form-label">CEP</label>
+                <input 
+                  formControlName="cep"
+                  name="cep"
+                  [(ngModel)]="user.cep"
+                  class="form-control" 
+                  autocomplete="off">
+              </div>
+              <div class="form-group">
                 <label class="form-label">UF</label>
-                <select name="" class="form-control">
+                <select 
+                  formControlName="uf"
+                  name="uf"
+                  [(ngModel)]="uf"
+                  class="form-control" 
+                  autocomplete="off"
+                  value="1">
                   <option value="1">RS</option>
                   <option value="2">SP</option>
                 </select>
               </div>
                 <div class="form-group">
                 <label class="form-label">Cidade</label>
-                <select name="" class="form-control">
-                  <option value="1">Sapiranga</option>
+                <select 
+                  formControlName="cityId"
+                  name="cityId"
+                  [(ngModel)]="user.cityId"
+                  class="form-control" 
+                  autocomplete="off"
+                  value="1">
+                  <option value="1">Porto Alegre</option>
                   <option value="2">Campinas</option>
+                  <option value="3">Sapiranga</option>
                 </select>
+              </div>
+              <div class="card-title">Redes sociais</div>
+              <div class="form-group">
+                <label class="form-label">Facebook</label>
+                <input 
+                  formControlName="facebook"
+                  name="facebook"
+                  [(ngModel)]="user.facebook"
+                  class="form-control" 
+                  autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Twitter</label>
+                <input 
+                  formControlName="twitter"
+                  name="twitter"
+                  [(ngModel)]="user.twitter"
+                  class="form-control" 
+                  autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Instagram</label>
+                <input 
+                  formControlName="instagram"
+                  name="instagram"
+                  [(ngModel)]="user.instagram"
+                  class="form-control" 
+                  autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Strava</label>
+                <input 
+                  formControlName="strava"
+                  name="strava"
+                  [(ngModel)]="user.strava"
+                  class="form-control" 
+                  autocomplete="off">
               </div>
               <div class="form-footer">
                 <button type="submit" class="btn btn-primary btn-block">Criar conta</button>

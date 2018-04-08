@@ -9,6 +9,11 @@ import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './global/header/header.component';
 import { FooterComponent } from './global/footer/footer.component';
 
+import { UserModule } from './domain/user/user.module';
+
+import 'rxjs/add/operator/map';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -17,11 +22,15 @@ import { FooterComponent } from './global/footer/footer.component';
     CadastroComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
-    routing,
+    HttpModule, 
+    routing,        
+    FormsModule,
+    ReactiveFormsModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
