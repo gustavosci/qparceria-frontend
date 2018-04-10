@@ -7,7 +7,7 @@ export class UserService {
 
   ajax: Http;
   headers: Headers;
-  url: string = 'localhost:8080/users';
+  url: string = 'http://localhost:8080/users';
 
   constructor(ajax: Http) {
     this.ajax = ajax;
@@ -15,19 +15,22 @@ export class UserService {
     this.headers.append('Content-type', 'application/json');        
   }
 
-  save(user: UserComponent){        
+  save(user: UserComponent){    
         let userJson: string =  JSON.stringify(user);
         let header: Object = { headers: this.headers};
 
         console.log(userJson);
-        /*
-        // considerar resposta
         if(user.id){
-            return this.ajax.put(this.url + "/" + user.id, userJson, header);
+            return this.ajax.put(this.url + "/" + user.id, userJson, header).
+                   toPromise()
+                   .then(res => res)
+                   .catch(res => res.json())
         } else {
-            return this.ajax.post(this.url, userJson, header);
+            return this.ajax.post(this.url, userJson, header).
+                   toPromise()
+                   .then(res => res)
+                   .catch(res => res.json())
         } 
-        */       
     }
 
   findById(id: String){

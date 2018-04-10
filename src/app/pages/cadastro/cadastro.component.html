@@ -51,6 +51,9 @@
                     <span *ngIf="formCadastro.controls.email.errors.required" class="form-control alert-danger">
                         E-mail obrigatório
                     </span>
+                    <span *ngIf="formCadastro.controls.email.errors.email" class="form-control alert-danger">
+                      Informe um e-mail válido
+                    </span>
                   </div>
               </div>
               <div class="form-group">
@@ -170,6 +173,37 @@
                   <option value="2">Campinas</option>
                   <option value="3">Sapiranga</option>
                 </select>
+              </div>
+              <div class="card-title">Esportes que curto</div>
+              <div class="form-group">
+                <label class="form-label">Corrida</label>
+                <input 
+                  formControlName="run"
+                  name="run"
+                  [(ngModel)]="user.run"
+                  class="form-control" 
+                  type="checkbox"
+                  autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Ciclismo</label>
+                <input 
+                  formControlName="cyclism"
+                  name="cyclism"
+                  [(ngModel)]="user.cyclism"
+                  class="form-control" 
+                  type="checkbox"
+                  autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Caminhada</label>
+                <input 
+                  formControlName="walk"
+                  name="walk"
+                  [(ngModel)]="user.walk"
+                  class="form-control" 
+                  type="checkbox"
+                  autocomplete="off">
               </div>
               <div class="card-title">Redes sociais</div>
               <div class="form-group">

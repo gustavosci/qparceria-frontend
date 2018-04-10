@@ -67,7 +67,7 @@ export class CadastroComponent implements OnInit {
     this.formCadastro = formBuilder.group({
         name: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
         username: ['', Validators.compose([Validators.required])],
-        email: ['', Validators.compose([Validators.required])],
+        email: ['', Validators.compose([Validators.required, Validators.email])],
         password: ['', Validators.compose([Validators.required])],
         gender: [],
         birthDate: [],
@@ -92,9 +92,16 @@ export class CadastroComponent implements OnInit {
 
   save(event){        
     event.preventDefault();
-    this.service.save(this.user);
-    this.user = new UserComponent();
-}
+    this.service.save(this.user).
+      then(res => {
+        console.log(res);
+        this.user = new UserComponent();
+        this.router.navigate(['/login']);
+      }).
+      catch(err => {
+        console.log(err);
+      })
+  }
 
 
 }

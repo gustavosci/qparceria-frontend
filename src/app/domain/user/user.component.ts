@@ -13,7 +13,7 @@ export class UserComponent implements OnInit {
   ngOnInit() {
   }
 
-  id;
+  id: string;
   @Input() name: string;
   @Input() username: string;
   @Input() email: string;
@@ -25,13 +25,13 @@ export class UserComponent implements OnInit {
   @Input() instagram: string;
   @Input() strava: string;
   @Input() pic: string;
-  adressId;
+  adressId: string;
   @Input() street: string;  
-  @Input() number;
+  @Input() number: string;
   @Input() neighborhood: string;
   @Input() complement: string;
-  @Input() cep;  
-  @Input() cityId;
+  @Input() cep: string;  
+  @Input() cityId: string;
   @Input() phone: string;
   @Input() run: boolean;
   @Input() walk: boolean;
