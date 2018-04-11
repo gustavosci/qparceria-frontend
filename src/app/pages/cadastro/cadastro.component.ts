@@ -69,7 +69,7 @@ export class CadastroComponent implements OnInit {
         username: ['', Validators.compose([Validators.required])],
         email: ['', Validators.compose([Validators.required, Validators.email])],
         password: ['', Validators.compose([Validators.required])],
-        gender: [],
+        gender: ['', Validators.compose([Validators.required])],
         birthDate: [],
         facebook: [],
         twitter: [],
@@ -81,8 +81,8 @@ export class CadastroComponent implements OnInit {
         neighborhood: [],
         complement: [],
         cep: [],
-        uf: [],
-        cityId: [],
+        uf: ['', Validators.compose([Validators.required])],
+        cityId: ['', Validators.compose([Validators.required])],
         phone: [],
         run: [],
         walk: [],
@@ -90,18 +90,43 @@ export class CadastroComponent implements OnInit {
     });
   }
 
-  save(event){        
+  submit(event) {        
     event.preventDefault();
-    this.service.save(this.user).
-      then(res => {
-        console.log(res);
-        this.user = new UserComponent();
-        this.router.navigate(['/login']);
-      }).
-      catch(err => {
-        console.log(err);
-      })
+    if(this.formCadastro.valid){
+      this.save();
+    } else {
+      alert('Existem campos inválidos! Por favor, ajuste-os e envie novamente.');
+      this.markFieldsTouched();
+    }
   }
 
+  private save() {
+    this.service.
+    save(this.user).
+      subscribe(res => {
+        console.log(res);
+        alert(res.msg + ' Agora você será levado para a página de Login :)');
+        this.user = new UserComponent();
+        this.router.navigate(['/login']);
+      }, err => {
+        console.log(err);
+        let errAlert = 'Erro na inclusão de usuário: ';
+        try{
+          console.log(err._body);
+          let errJson = JSON.parse(err._body.Json());
+          errAlert += errJson.msg;
+        }
+        catch{
+          errAlert += err;
+        }
+        alert(errAlert);
+      });  
+  }
 
+  private markFieldsTouched() {
+    Object.keys(this.formCadastro.controls).forEach(field => {
+      const control = this.formCadastro.get(field);
+      control.markAsTouched();
+    })
+  }
 }

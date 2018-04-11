@@ -22,19 +22,33 @@ export class UserService {
         console.log(userJson);
         if(user.id){
             return this.ajax.put(this.url + "/" + user.id, userJson, header).
-                   toPromise()
-                   .then(res => res)
-                   .catch(res => res.json())
+                   map(res => new ResponseService(res.status, "Usuário alterado com sucesso!"));
         } else {
             return this.ajax.post(this.url, userJson, header).
-                   toPromise()
-                   .then(res => res)
-                   .catch(res => res.json())
+                  map(res => new ResponseService(res.status, "Usuário incluído com sucesso!"));
         } 
     }
 
   findById(id: String){
     return this.ajax.get(this.url + "/" + id).map(res => res.json());
+  }
+}
+
+export class ResponseService{
+
+  private _status: number;
+  private _msg: string;
+
+  constructor(_status: number, _msg: string){
+      this._status = _status;
+      this._msg = _msg;
+  }
+  get msg() : string{
+      return this._msg;
+  }
+
+  get status() : number{
+      return this._status;
   }
 
 }

@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col col-login mx-auto">
-          <form [formGroup]="formCadastro" class="card" (submit)="save($event)">
+          <form [formGroup]="formCadastro" class="card" (submit)="submit($event)">
             <div class="card-body p-6">
               <div class="card-title">Será um prazer recebê-lo no QParceria</div>
               <div class="form-group">
@@ -14,7 +14,7 @@
                   [(ngModel)]="user.name"
                   class="form-control" 
                   autocomplete="off">
-                  <div *ngIf="formCadastro.controls.name.invalid">
+                  <div *ngIf="formCadastro.controls.name.invalid && formCadastro.controls.name.touched">
                     <span *ngIf="formCadastro.controls.name.errors.required" class="form-control alert-danger">
                         Nome obrigatório
                     </span>
@@ -31,7 +31,7 @@
                   [(ngModel)]="user.username"
                   class="form-control" 
                   autocomplete="off">
-                  <div *ngIf="formCadastro.controls.username.invalid">
+                  <div *ngIf="formCadastro.controls.username.invalid && formCadastro.controls.username.touched">
                     <span *ngIf="formCadastro.controls.username.errors.required" class="form-control alert-danger">
                         Username obrigatório
                     </span>
@@ -47,7 +47,7 @@
                   autocomplete="off"
                   type="email"
                   placeholder="ex.: email@hotmail.com">
-                  <div *ngIf="formCadastro.controls.email.invalid">
+                  <div *ngIf="formCadastro.controls.email.invalid && formCadastro.controls.email.touched">
                     <span *ngIf="formCadastro.controls.email.errors.required" class="form-control alert-danger">
                         E-mail obrigatório
                     </span>
@@ -65,7 +65,7 @@
                   class="form-control" 
                   autocomplete="off"
                   type="password">
-                  <div *ngIf="formCadastro.controls.password.invalid">
+                  <div *ngIf="formCadastro.controls.password.invalid && formCadastro.controls.password.touched">
                     <span *ngIf="formCadastro.controls.password.errors.required" class="form-control alert-danger">
                         Senha obrigatória
                     </span>
@@ -82,7 +82,12 @@
                   <option value="MASCULINO">Masculino</option>
                   <option value="FEMININO">Feminino</option>
                 </select>
-              </div>
+                <div *ngIf="formCadastro.controls.gender.invalid && formCadastro.controls.gender.touched">
+                  <span *ngIf="formCadastro.controls.gender.errors.required" class="form-control alert-danger">
+                      Campo Sexo Obrigatório
+                  </span>
+                </div>
+              </div>            
               <div class="form-group">
                 <label class="form-label">Data de nascimento</label>
                 <input 
@@ -159,8 +164,13 @@
                   <option value="1">RS</option>
                   <option value="2">SP</option>
                 </select>
+                <div *ngIf="formCadastro.controls.uf.invalid && formCadastro.controls.uf.touched">
+                  <span *ngIf="formCadastro.controls.uf.errors.required" class="form-control alert-danger">
+                      Campo UF obrigatório
+                  </span>
+                </div>  
               </div>
-                <div class="form-group">
+              <div class="form-group">
                 <label class="form-label">Cidade</label>
                 <select 
                   formControlName="cityId"
@@ -173,6 +183,11 @@
                   <option value="2">Campinas</option>
                   <option value="3">Sapiranga</option>
                 </select>
+                <div *ngIf="formCadastro.controls.cityId.invalid && formCadastro.controls.cityId.touched">
+                  <span *ngIf="formCadastro.controls.cityId.errors.required" class="form-control alert-danger">
+                      Campo Cidade obrigatório
+                  </span>
+                </div>  
               </div>
               <div class="card-title">Esportes que curto</div>
               <div class="form-group">
