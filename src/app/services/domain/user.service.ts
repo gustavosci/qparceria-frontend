@@ -30,13 +30,7 @@ export class UserService {
       }
 
   findByUsername(username: String) : Observable<UserDTO>{    
-    let token = this.storage.getLocalUser().token;
-    let authHeader = new HttpHeaders({
-      'Authorization': 'Bearer ' + token
-    });
-
-    return this.http.get<UserDTO>(
-      `${API_CONFIG.urlUser}/username?value=${username}`, {'headers': authHeader});       
+    return this.http.get<UserDTO>(`${API_CONFIG.urlUser}/username?value=${username}`);       
   }
     
 }

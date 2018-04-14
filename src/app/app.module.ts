@@ -17,6 +17,7 @@ import { UserService } from './services/domain/user.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorInterceptorProvider } from './interceptor/error-interceptor';
 import { StorageService } from './services/storage.service';
+import { AuthInterceptorProvider } from './interceptor/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { StorageService } from './services/storage.service';
   providers: [
     AuthService,
     UserService,
+    AuthInterceptorProvider,
     ErrorInterceptorProvider,
     StorageService    
   ],
