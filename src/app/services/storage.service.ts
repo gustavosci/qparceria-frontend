@@ -13,7 +13,7 @@ export class StorageService {
       return null;
     }
     else {
-      JSON.parse(user);
+      return JSON.parse(user);
     }
   }
 

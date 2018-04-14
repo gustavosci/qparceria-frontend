@@ -1,37 +1,44 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
 import { UserDTO } from '../../model/user.dto';
+import { API_CONFIG } from '../../config/api.config';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Rx';
+import { StorageService } from '../storage.service';
 
 @Injectable()
 export class UserService {
 
-  ajax: Http;
-  headers: Headers;
-  url: string = 'http://localhost:8080/users';
-
-  constructor(ajax: Http) {
-    this.ajax = ajax;
-    this.headers = new Headers();
-    this.headers.append('Content-type', 'application/json');        
+  constructor(public http: HttpClient, public storage: StorageService) {
   }
 
   save(user: UserDTO){    
+  /*
+
         let userJson: string =  JSON.stringify(user);
         let header: Object = { headers: this.headers};
 
         console.log(userJson);
         if(user.id){
-            return this.ajax.put(this.url + "/" + user.id, userJson, header).
+            return this.http.put(API_CONFIG.urlUser + "/" + user.id, userJson, header).
                    map(res => new ResponseService(res.status, "Usuário alterado com sucesso!"));
         } else {
-            return this.ajax.post(this.url, userJson, header).
+            return this.http.post(API_CONFIG.urlUser, userJson, header).
                   map(res => new ResponseService(res.status, "Usuário incluído com sucesso!"));
         } 
-    }
+*/
 
-  findById(id: String){
-    return this.ajax.get(this.url + "/" + id).map(res => res.json());
+      }
+
+  findByUsername(username: String) : Observable<UserDTO>{    
+    let token = this.storage.getLocalUser().token;
+    let authHeader = new HttpHeaders({
+      'Authorization': 'Bearer ' + token
+    });
+
+    return this.http.get<UserDTO>(
+      `${API_CONFIG.urlUser}/username?value=${username}`, {'headers': authHeader});       
   }
+    
 }
 
 export class ResponseService{

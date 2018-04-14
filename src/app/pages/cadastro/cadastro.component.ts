@@ -1,9 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { UserService } from "../../services/domain/user.service";
+import { StorageService } from '../../services/storage.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserDTO } from '../../model/user.dto';
-
+import { LocalUser } from '../../model/local-user';
+import { STORAGE_KEYS } from '../../config/storage-keys.config';
 
 @Component({
   moduleId: module.id,
@@ -40,51 +42,24 @@ export class CadastroComponent implements OnInit {
   };
   uf;
   formCadastro: FormGroup;
-  service: UserService;
+  userService: UserService;
+  storage: StorageService;
   route: ActivatedRoute;
   router: Router;
 
-  constructor(service: UserService, formBuilder: FormBuilder, route: ActivatedRoute, router: Router){
-    this.setService(service);
-    this.setRouter(router);
-    this.setRoute(route);        
+  constructor(userService: UserService, storage: StorageService, formBuilder: FormBuilder, route: ActivatedRoute, router: Router){
+    this.userService = userService;
+    this.storage = storage;
+    this.router = router;
+    this.route = route;
     this.setFormCadastro(formBuilder);    
   }
 
-  ngOnInit() {
-  }
-
-  setService(service: UserService){
-    this.service = service;
-  }
-
-  setRouter(router){
-    this.router = router;
-  }
-
-  setRoute(route: ActivatedRoute){
-    this.route = route;
-    this.route.params.subscribe(params => {
-        let id = params["id"];
-        if(id){
-            this.setUserById(id);
-        }
-    })
-  }
-
-  setUserById(id: string){
-    this.service
-    .findById(id)
-    .subscribe(
-        user => {
-            this.user = user;
-        },
-        erro => {
-            console.log(erro);
-            alert("Usuário não encontrado!");
-            this.router.navigate(['']);
-        }
-    );
+  ngOnInit() {    
+    let userLogged: LocalUser = this.storage.getLocalUser();
+    if(userLogged && userLogged.username){
+      this.setUserByUsername(userLogged.username);
+    }
   }
 
   setFormCadastro(formBuilder: FormBuilder){
@@ -114,6 +89,20 @@ export class CadastroComponent implements OnInit {
     });
   }
 
+  setUserByUsername(username: string){    
+    this.userService
+    .findByUsername(username)
+    .subscribe(
+        user => {
+            this.user = user;
+        },
+        erro => { 
+          console.log("Não encontrou usuário por username :(");
+        }
+    );
+  }
+
+
   submit(event) {        
     event.preventDefault();
     if(this.formCadastro.valid){
@@ -125,6 +114,7 @@ export class CadastroComponent implements OnInit {
   }
 
   private save() {
+    /*
     this.service.
     save(this.user).
       subscribe(res => {
@@ -144,6 +134,7 @@ export class CadastroComponent implements OnInit {
         }
         alert(errAlert);
       });  
+      */
   }
 
   private markFieldsTouched() {
