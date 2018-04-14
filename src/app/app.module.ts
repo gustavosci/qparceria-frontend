@@ -9,11 +9,13 @@ import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './global/header/header.component';
 import { FooterComponent } from './global/footer/footer.component';
 
-import { UserModule } from './domain/user/user.module';
-
 import 'rxjs/add/operator/map';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { AuthService } from './services/auth.service';
+import { UserService } from './services/domain/user.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ErrorInterceptorProvider } from './interceptor/error-interceptor';
 
 @NgModule({
   declarations: [
@@ -30,9 +32,13 @@ import { HttpModule } from '@angular/http';
     routing,        
     FormsModule,
     ReactiveFormsModule,
-    UserModule
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    UserService,
+    ErrorInterceptorProvider    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

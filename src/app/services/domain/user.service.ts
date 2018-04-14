@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { UserComponent } from '../domain/user/user.component';
+import { UserDTO } from '../../model/user.dto';
 
 @Injectable()
 export class UserService {
@@ -15,7 +15,7 @@ export class UserService {
     this.headers.append('Content-type', 'application/json');        
   }
 
-  save(user: UserComponent){    
+  save(user: UserDTO){    
         let userJson: string =  JSON.stringify(user);
         let header: Object = { headers: this.headers};
 

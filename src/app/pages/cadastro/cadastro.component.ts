@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserComponent } from '../../domain/user/user.component';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { UserService } from "../../services/user.service";
+import { UserService } from "../../services/domain/user.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { UserDTO } from '../../model/user.dto';
 
 
 @Component({
@@ -13,7 +13,31 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class CadastroComponent implements OnInit {
 
-  user: UserComponent = new UserComponent();
+  user: UserDTO = {
+    id: "",
+    name: "",
+    username: "",
+    email: "",
+    password: "",
+    birthDate: "",
+    gender: "",
+    facebook: "",
+    twitter: "",
+    instagram: "",
+    strava: "",
+    pic: "",
+    adressId: "",
+    street: "",  
+    number: "",
+    neighborhood: "",
+    complement: "",
+    cep: "",  
+    cityId: "",
+    phone: "",
+    run: false,
+    walk: false,
+    cyclism: false
+  };
   uf;
   formCadastro: FormGroup;
   service: UserService;
@@ -24,7 +48,7 @@ export class CadastroComponent implements OnInit {
     this.setService(service);
     this.setRouter(router);
     this.setRoute(route);        
-    this.setFormCadastro(formBuilder);
+    this.setFormCadastro(formBuilder);    
   }
 
   ngOnInit() {
@@ -106,7 +130,6 @@ export class CadastroComponent implements OnInit {
       subscribe(res => {
         console.log(res);
         alert(res.msg + ' Agora você será levado para a página de Login :)');
-        this.user = new UserComponent();
         this.router.navigate(['/login']);
       }, err => {
         console.log(err);
