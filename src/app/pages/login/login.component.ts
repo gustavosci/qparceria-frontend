@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
   public login(){
     this.auth.authenticate(this.creds)
       .subscribe(res => {
-        console.log(res.headers.get('Authorization'));
+        this.auth.successfulLogin(res.headers.get('Authorization'));
         this.router.navigate(['/home']);
       },
     error => {})
