@@ -28,6 +28,12 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.auth.refreshToken()
+      .subscribe(res => {
+        this.auth.successfulLogin(res.headers.get('Authorization'));
+        this.router.navigate(['/home']);
+      },
+    error => {})    
   }
 
   private setFormLogin(formBuilder: FormBuilder){
@@ -48,7 +54,7 @@ export class LoginComponent implements OnInit {
   private setRoute(route: ActivatedRoute){
     this.route = route;
   }
-
+  
   public login(){
     this.auth.authenticate(this.creds)
       .subscribe(res => {

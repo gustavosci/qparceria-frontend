@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { StorageService } from '../../services/storage.service';
 import { LocalUser } from '../../model/local-user';
 import { ActivatedRoute, Router } from "@angular/router";
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -10,14 +10,16 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public storage: StorageService, public route: ActivatedRoute, public router: Router) {    
+  constructor(public auth: AuthService, public route: ActivatedRoute, public router: Router) {    
   }
 
   ngOnInit() {
-    let userLogged: LocalUser = this.storage.getLocalUser();
-    if(!userLogged){
+    this.auth.refreshToken()
+    .subscribe(res => {
+      this.auth.successfulLogin(res.headers.get('Authorization'));
+    },
+    error => {
       this.router.navigate(['/login']);
-    }
-  }
-  
+    })    
+  }  
 }
