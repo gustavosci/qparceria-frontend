@@ -105,7 +105,6 @@ export class CadastroComponent implements OnInit {
     );
   }
 
-
   submit(event) {        
     event.preventDefault();
     if(this.formCadastro.valid){

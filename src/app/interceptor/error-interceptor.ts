@@ -23,18 +23,33 @@ export class ErrorInterceptor implements HttpInterceptor {
 
             console.log("Erro detectado pelo interceptor: ", errorObj);
             switch(errorObj.status) {
+                case 401:
+                    this.handleError401();
+                    break;
                 case 403:
                     this.handleError403();
                     break;
+                default:
+                    this.handleErrorDefault(errorObj);
+                    break;                    
             };
 
             return Observable.throw(errorObj);
         }) as any;
     }
 
+    private handleError401(){
+        alert("Usuário ou senha incorretos!");
+    }
+
     private handleError403(){
         this.storage.setLocalUser(null);
     }
+
+    private handleErrorDefault(error){
+        alert("Erro " + error.status + ": " + error.error + "\n\n" + error.message);
+    }
+
 }
 
 export const ErrorInterceptorProvider = {
