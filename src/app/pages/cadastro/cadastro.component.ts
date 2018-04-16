@@ -90,6 +90,7 @@ export class CadastroComponent implements OnInit {
   }
 
   setUserByUsername(username: string){    
+    
     this.userService
     .findByUsername(username)
     .subscribe(
@@ -97,7 +98,9 @@ export class CadastroComponent implements OnInit {
             this.user = user;
         },
         erro => { 
-          console.log("Não encontrou usuário por username :(");
+           if(erro.status === 403){
+            this.router.navigate(['/login']);
+           }            
         }
     );
   }

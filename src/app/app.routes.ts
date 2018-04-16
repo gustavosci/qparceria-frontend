@@ -5,9 +5,8 @@ import { LoginComponent } from './pages/login/login.component';
 
 // Uma constante que recebe um array do tipo Routes
 const appRoutes: Routes = [
-    { path: '', component: LoginComponent },
+    { path: '', component: HomeComponent },
     { path: 'cadastro', component: CadastroComponent },
-    { path: 'cadastro/:id', component: CadastroComponent },
     { path: 'login', component: LoginComponent },
     { path: '**', component: HomeComponent }
 ];
