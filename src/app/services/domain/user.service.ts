@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserDTO } from '../../model/user.dto';
 import { API_CONFIG } from '../../config/api.config';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { StorageService } from '../storage.service';
 
@@ -12,22 +12,35 @@ export class UserService {
   }
 
   save(user: UserDTO){    
-  /*
-
-        let userJson: string =  JSON.stringify(user);
-        let header: Object = { headers: this.headers};
-
-        console.log(userJson);
+        console.log(user);        
         if(user.id){
-            return this.http.put(API_CONFIG.urlUser + "/" + user.id, userJson, header).
-                   map(res => new ResponseService(res.status, "Usuário alterado com sucesso!"));
+            return this.update(user);
         } else {
-            return this.http.post(API_CONFIG.urlUser, userJson, header).
-                  map(res => new ResponseService(res.status, "Usuário incluído com sucesso!"));
+            return this.insert(user);
         } 
-*/
+    }
 
-      }
+    private insert(user: UserDTO){
+        return this.http.post(
+            API_CONFIG.urlUser,
+            user,
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        );
+    }
+
+    private update(user: UserDTO){
+        return this.http.put(
+            `${API_CONFIG.urlUser}/${user.id}`,
+            user,
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        );    
+    }
 
   findByUsername(username: String) : Observable<UserDTO>{    
     return this.http.get<UserDTO>(`${API_CONFIG.urlUser}/username?value=${username}`);       

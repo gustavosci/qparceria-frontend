@@ -42,28 +42,26 @@ export class CadastroComponent implements OnInit {
   };
   uf;
   formCadastro: FormGroup;
-  userService: UserService;
-  storage: StorageService;
-  route: ActivatedRoute;
-  router: Router;
+  newUser: boolean;
 
-  constructor(userService: UserService, storage: StorageService, formBuilder: FormBuilder, route: ActivatedRoute, router: Router){
-    this.userService = userService;
-    this.storage = storage;
-    this.router = router;
-    this.route = route;
-    this.setFormCadastro(formBuilder);    
+  constructor(public userService: UserService, 
+              public storage: StorageService,
+              public formBuilder: FormBuilder,
+              public route: ActivatedRoute,
+              public router: Router){
+    this.setFormCadastro();    
   }
 
   ngOnInit() {    
+    this.newUser = true;
     let userLogged: LocalUser = this.storage.getLocalUser();
     if(userLogged && userLogged.username){
       this.setUserByUsername(userLogged.username);
     }
   }
 
-  setFormCadastro(formBuilder: FormBuilder){
-    this.formCadastro = formBuilder.group({
+  setFormCadastro(){
+    this.formCadastro = this.formBuilder.group({
         name: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
         username: ['', Validators.compose([Validators.required])],
         email: ['', Validators.compose([Validators.required, Validators.email])],
@@ -89,13 +87,13 @@ export class CadastroComponent implements OnInit {
     });
   }
 
-  setUserByUsername(username: string){    
-    
+  setUserByUsername(username: string){        
     this.userService
     .findByUsername(username)
     .subscribe(
         user => {
             this.user = user;
+            this.newUser = false;
         },
         erro => { 
            if(erro.status === 403){
@@ -116,27 +114,15 @@ export class CadastroComponent implements OnInit {
   }
 
   private save() {
-    /*
-    this.service.
-    save(this.user).
-      subscribe(res => {
-        console.log(res);
-        alert(res.msg + ' Agora você será levado para a página de Login :)');
-        this.router.navigate(['/login']);
-      }, err => {
-        console.log(err);
-        let errAlert = 'Erro na inclusão de usuário: ';
-        try{
-          console.log(err._body);
-          let errJson = JSON.parse(err._body.Json());
-          errAlert += errJson.msg;
+    this.userService.save(this.user)
+      .subscribe(res => {
+        if(this.newUser){
+          alert("Parabéns, o usuário incluído com sucesso!\nVocê será encaminhado para a página de login :)");
+          this.router.navigate(['/login']);
+        } else {
+          alert("Alteração feita com sucesso :)");
         }
-        catch{
-          errAlert += err;
-        }
-        alert(errAlert);
-      });  
-      */
+      }, error => {})
   }
 
   private markFieldsTouched() {

@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { CredentialsDTO } from '../../model/credentials.dto';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute, Router } from "@angular/router";
+import { StorageService } from '../../services/storage.service';
+import { LocalUser } from '../../model/local-user';
 
 @Component({
   selector: 'app-login',
@@ -16,24 +18,24 @@ export class LoginComponent implements OnInit {
     password: ""
   }
   formLogin: FormGroup;
-  auth: AuthService;
-  route: ActivatedRoute;
-  router: Router;
 
-  constructor(formBuilder: FormBuilder, auth: AuthService, route: ActivatedRoute, router: Router) { 
+  constructor(public formBuilder: FormBuilder, 
+              public storage: StorageService,
+              public auth: AuthService,
+              public route: ActivatedRoute, 
+              public router: Router) { 
     this.setFormLogin(formBuilder);
-    this.setAuth(auth);
-    this.setRouter(router);
-    this.setRoute(route);        
   }
 
   ngOnInit() {
-    this.auth.refreshToken()
+    let localUser: LocalUser = this.storage.getLocalUser();
+    if(localUser){
+      this.auth.refreshToken()
       .subscribe(res => {
         this.auth.successfulLogin(res.headers.get('Authorization'));
         this.router.navigate(['/home']);
-      },
-    error => {})    
+      }, error => {})    
+    }
   }
 
   private setFormLogin(formBuilder: FormBuilder){
@@ -41,18 +43,6 @@ export class LoginComponent implements OnInit {
         username: ['', Validators.compose([Validators.required])],
         password: ['', Validators.compose([Validators.required])]
     });
-  }
-
-  private setAuth(auth: AuthService){
-    this.auth = auth;
-  }
-
-  private setRouter(router){
-    this.router = router;
-  }
-
-  private setRoute(route: ActivatedRoute){
-    this.route = route;
   }
   
   public login(){

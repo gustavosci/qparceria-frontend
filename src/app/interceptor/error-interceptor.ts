@@ -2,6 +2,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HTTP_INTERCEPTORS
 import { Observable } from 'rxjs/Rx';
 import { Injectable } from "@angular/core";
 import { StorageService } from '../services/storage.service';
+import { FieldMessage } from "../model/fieldmessage";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -16,12 +17,13 @@ export class ErrorInterceptor implements HttpInterceptor {
             if(errorObj.error){
                 errorObj = errorObj.error;
             }
+            
             // Se a resposta não é um conteúdo JSON, o transforma em JSON
             if(!errorObj.status) {
                 errorObj = JSON.parse(errorObj)
             }
-
             console.log("Erro detectado pelo interceptor: ", errorObj);
+
             switch(errorObj.status) {
                 case 401:
                     this.handleError401();
@@ -29,10 +31,13 @@ export class ErrorInterceptor implements HttpInterceptor {
                 case 403:
                     this.handleError403();
                     break;
+                case 422:
+                    this.handleError422(errorObj);
+                    break;
                 default:
                     this.handleErrorDefault(errorObj);
                     break;                    
-            };
+            };    
 
             return Observable.throw(errorObj);
         }) as any;
@@ -46,10 +51,23 @@ export class ErrorInterceptor implements HttpInterceptor {
         this.storage.setLocalUser(null);
     }
 
-    private handleErrorDefault(error){
-        alert("Erro " + error.status + ": " + error.error + "\n\n" + error.message);
+    private handleError422(error){
+        alert(this.stringfyListErrors(error.errors));
     }
 
+    private handleErrorDefault(error){
+        if(error.status){
+            alert("Erro " + error.status + ": " + error.error + "\n\n" + error.message);
+        }        
+    }
+
+    private stringfyListErrors(messages : FieldMessage[]) : string{
+        let s : string = 'Erros de validação: \n\n';
+        for(var i=0; i<messages.length; i++){
+            s += messages[i].fieldName + ": " + messages[i].message;
+        }
+        return s;
+    }
 }
 
 export const ErrorInterceptorProvider = {
