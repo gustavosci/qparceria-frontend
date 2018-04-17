@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -8,12 +9,18 @@ import { StorageService } from '../../services/storage.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public storage: StorageService) {    
+  constructor(public storage: StorageService,
+              public route: ActivatedRoute,
+              public router: Router){
   }
 
   ngOnInit() {
   }
 
-  
+  logout(){
+    console.log("caiu aqui");
+    //this.storage.setLocalUser(null);
+    //this.router.navigate(['/login']);
+  }
 
 }

@@ -91,7 +91,7 @@ export class CadastroComponent implements OnInit {
     });
   }
 
-  setUserByUsername(username: string){        
+  private setUserByUsername(username: string){        
     this.userService
     .findByUsername(username)
     .subscribe(
@@ -129,7 +129,7 @@ export class CadastroComponent implements OnInit {
         }
       }, error => {
         if(!this.newUser && error.status === 403){
-          alert('Sessão expirada!\nFavor logar novamente para efetuar as alterações.')
+          alert('Sessão expirada!\nFavor logar novamente para efetuar as alterações.');
         }
       })
   }
