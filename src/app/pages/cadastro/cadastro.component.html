@@ -56,7 +56,7 @@
                     </span>
                   </div>
               </div>
-              <div class="form-group">
+              <div *ngIf="this.newUser" class="form-group">
                 <label class="form-label">Senha</label>
                 <input 
                   formControlName="password"

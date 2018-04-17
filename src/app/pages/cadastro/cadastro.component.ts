@@ -49,10 +49,14 @@ export class CadastroComponent implements OnInit {
               public formBuilder: FormBuilder,
               public route: ActivatedRoute,
               public router: Router){
-    this.setFormCadastro();    
   }
 
-  ngOnInit() {    
+  ngOnInit() {   
+    this.loadUserLogged();
+    this.loadFormCadastro();    
+  }
+
+  private loadUserLogged(){
     this.newUser = true;
     let userLogged: LocalUser = this.storage.getLocalUser();
     if(userLogged && userLogged.username){
@@ -60,12 +64,12 @@ export class CadastroComponent implements OnInit {
     }
   }
 
-  setFormCadastro(){
+  private loadFormCadastro(){
     this.formCadastro = this.formBuilder.group({
         name: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
         username: ['', Validators.compose([Validators.required])],
         email: ['', Validators.compose([Validators.required, Validators.email])],
-        password: ['', Validators.compose([Validators.required])],
+        password: [''], // incluir Validators.compose([Validators.required]) posteriormente
         gender: ['', Validators.compose([Validators.required])],
         birthDate: [],
         facebook: [],
