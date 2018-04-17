@@ -18,6 +18,7 @@ export interface UserDTO {
     complement: string;
     cep: string;  
     cityId: string;
+    ufId: string;
     phone: string;
     run: boolean;
     walk: boolean;

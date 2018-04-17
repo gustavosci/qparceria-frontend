@@ -35,12 +35,12 @@ export class CadastroComponent implements OnInit {
     complement: "",
     cep: "",  
     cityId: "",
+    ufId: "",
     phone: "",
     run: false,
     walk: false,
     cyclism: false
   };
-  uf;
   formCadastro: FormGroup;
   newUser: boolean;
 
@@ -82,7 +82,7 @@ export class CadastroComponent implements OnInit {
         neighborhood: [],
         complement: [],
         cep: [],
-        uf: ['', Validators.compose([Validators.required])],
+        ufId: ['', Validators.compose([Validators.required])],
         cityId: ['', Validators.compose([Validators.required])],
         phone: [],
         run: [],
@@ -125,8 +125,13 @@ export class CadastroComponent implements OnInit {
           this.router.navigate(['/login']);
         } else {
           alert("Alteração feita com sucesso :)");
+          this.router.navigate(['']);
         }
-      }, error => {})
+      }, error => {
+        if(!this.newUser && error.status === 403){
+          alert('Sessão expirada!\nFavor logar novamente para efetuar as alterações.')
+        }
+      })
   }
 
   private markFieldsTouched() {

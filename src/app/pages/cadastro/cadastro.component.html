@@ -155,17 +155,17 @@
               <div class="form-group">
                 <label class="form-label">UF</label>
                 <select 
-                  formControlName="uf"
-                  name="uf"
-                  [(ngModel)]="uf"
+                  formControlName="ufId"
+                  name="ufId"
+                  [(ngModel)]="user.ufId"
                   class="form-control" 
                   autocomplete="off"
                   value="1">
                   <option value="1">RS</option>
                   <option value="2">SP</option>
                 </select>
-                <div *ngIf="formCadastro.controls.uf.invalid && formCadastro.controls.uf.touched">
-                  <span *ngIf="formCadastro.controls.uf.errors.required" class="form-control alert-danger">
+                <div *ngIf="formCadastro.controls.ufId.invalid && formCadastro.controls.ufId.touched">
+                  <span *ngIf="formCadastro.controls.ufId.errors.required" class="form-control alert-danger">
                       Campo UF obrigatório
                   </span>
                 </div>  
