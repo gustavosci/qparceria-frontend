@@ -262,8 +262,8 @@
               </div>
             </div>
           </form>
-          <div class="text-center text-muted">
-            Já é cadastrado? <a href="/login">Faça login aqui</a>
+          <div *ngIf="newUser" class="text-center text-muted">
+            Já é cadastrado? <a [routerLink]="['/login']">Faça login aqui</a>
           </div>
         </div>
       </div>

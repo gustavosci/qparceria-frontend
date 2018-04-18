@@ -34,7 +34,9 @@ export class LoginComponent implements OnInit {
       .subscribe(res => {
         this.auth.successfulLogin(res.headers.get('Authorization'));
         this.router.navigate(['/home']);
-      }, error => {})    
+      }, error => {
+        this.storage.setLocalUser(null);
+      })    
     }
   }
 
@@ -51,6 +53,8 @@ export class LoginComponent implements OnInit {
         this.auth.successfulLogin(res.headers.get('Authorization'));
         this.router.navigate(['/home']);
       },
-    error => {})
+    error => {
+      this.storage.setLocalUser(null);
+    })
   }
 }

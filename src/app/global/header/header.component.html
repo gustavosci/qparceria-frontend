@@ -2,7 +2,7 @@
   <div class="header">
     <div class="container">
       <div class="d-flex">
-        <a class="navbar-brand" href="./index.html">
+        <a class="navbar-brand" [routerLink]="['']">
           <img src="./assets/demo/brand/tabler.svg" class="navbar-brand-img" alt="tabler.io">
         </a>
         <div class="ml-auto d-flex order-lg-2">
@@ -23,7 +23,7 @@
                 <span>Configurações</span>
               </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href ng-click="this.logout()">Sair</a>
+              <a class="dropdown-item" href (click)="this.logout()">Sair</a>
             </div>
           </div>
         </div>
@@ -36,13 +36,13 @@
         <div class="col">
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a href="../index.html" class="nav-link"><i class="fe fe-home"></i> Home</a>
+              <a [routerLink]="['']" class="nav-link"><i class="fe fe-home"></i> Home</a>
             </li>
             <li class="nav-item">
-              <a href="../form-elements.html" class="nav-link"><i class="fe fe-box"></i> Atividades</a>
+              <a href="#" class="nav-link"><i class="fe fe-box"></i> Atividades</a>
             </li>
             <li class="nav-item">
-              <a href="../gallery.html" class="nav-link"><i class="fe fe-image"></i> Buscar</a>
+              <a href="#" class="nav-link"><i class="fe fe-image"></i> Buscar</a>
             </li>
           </ul>
         </div>

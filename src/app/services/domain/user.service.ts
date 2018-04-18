@@ -11,8 +11,7 @@ export class UserService {
   constructor(public http: HttpClient, public storage: StorageService) {
   }
 
-  save(user: UserDTO){    
-        console.log(user);        
+  save(user: UserDTO){        
         if(user.id){
             return this.update(user);
         } else {
@@ -46,23 +45,4 @@ export class UserService {
     return this.http.get<UserDTO>(`${API_CONFIG.urlUser}/username?value=${username}`);       
   }
     
-}
-
-export class ResponseService{
-
-  private _status: number;
-  private _msg: string;
-
-  constructor(_status: number, _msg: string){
-      this._status = _status;
-      this._msg = _msg;
-  }
-  get msg() : string{
-      return this._msg;
-  }
-
-  get status() : number{
-      return this._status;
-  }
-
 }

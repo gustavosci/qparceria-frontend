@@ -18,9 +18,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    console.log("caiu aqui");
-    //this.storage.setLocalUser(null);
-    //this.router.navigate(['/login']);
+    this.storage.setLocalUser(null);
+    this.router.navigate(['/login']);
   }
 
 }
