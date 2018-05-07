@@ -4,7 +4,9 @@ import { ActivityDetailsDTO } from "./activitydetails.dto";
 export interface ActivityDTO {
 	referencePointStart: string;
 	referencePointEnd: string;
+	ufStartId: string;
 	cityStartId: string;
+	ufEndId: string;
 	cityEndId: string;
 	typeRoute: string;
 	nameRoute: string;
