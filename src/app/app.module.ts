@@ -8,6 +8,8 @@ import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './global/header/header.component';
 import { FooterComponent } from './global/footer/footer.component';
+import { ActivityComponent } from './pages/activity/activity.component';
+
 
 import 'rxjs/add/operator/map';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -27,6 +29,7 @@ import { AuthInterceptorProvider } from './interceptor/auth-interceptor';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    ActivityComponent,
   ],
   imports: [
     BrowserModule,
