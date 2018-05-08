@@ -1,3 +1,128 @@
-<p>
-  activity works!
-</p>
+<div class="page">
+  <div class="page-single">
+    <div class="container">
+      <div class="row">
+        <div class="col col-login mx-auto">
+          <form [formGroup]="formActivity" class="card" (submit)="submit($event)">
+            <div class="card-body p-6">
+              <div class="form-group">
+                  <label class="form-label">Esporte (*)</label>
+                  <select 
+                    formControlName="sportId"
+                    name="sportId"
+                    [(ngModel)]="act.sportId"
+                    class="form-control" 
+                    autocomplete="off"
+                    value="1">
+                    <option value="1">Corrida</option>
+                    <option value="2">Ciclismo</option>
+                    <option value="3">Caminhada</option>
+                  </select>
+                  <div *ngIf="formActivity.controls.sportId.invalid && formActivity.controls.sportId.touched">
+                    <span *ngIf="formActivity.controls.sportId.errors.required" class="form-control alert-danger">
+                        Campo Esporte obrigatório
+                    </span>
+                  </div>  
+              </div>    
+              <div class="form-group">
+                <label class="form-label">UF saída (*)</label>
+                <select 
+                  formControlName="ufStartId"
+                  name="ufStartId"
+                  [(ngModel)]="act.ufStartId"
+                  class="form-control" 
+                  autocomplete="off"
+                  value="1">
+                  <option value="1">RS</option>
+                  <option value="2">SP</option>
+                </select>
+                <div *ngIf="formActivity.controls.ufStartId.invalid && formActivity.controls.ufStartId.touched">
+                  <span *ngIf="formActivity.controls.ufStartId.errors.required" class="form-control alert-danger">
+                      Campo UF de saída obrigatório
+                  </span>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label class="form-label">Cidade de saída (*)</label>
+                <select 
+                  formControlName="cityStartId"
+                  name="cityStartId"
+                  [(ngModel)]="act.cityStartId"
+                  class="form-control" 
+                  autocomplete="off"
+                  value="1">
+                  <option value="1">Porto Alegre</option>
+                  <option value="2">Campinas</option>
+                  <option value="3">Sapiranga</option>
+                </select>
+                <div *ngIf="formActivity.controls.cityStartId.invalid && formActivity.controls.cityStartId.touched">
+                  <span *ngIf="formActivity.controls.cityStartId.errors.required" class="form-control alert-danger">
+                      Campo Cidade de saída obrigatório
+                  </span>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label class="form-label">UF destino (*)</label>
+                <select 
+                  formControlName="ufEndId"
+                  name="ufEndId"
+                  [(ngModel)]="act.ufEndId"
+                  class="form-control" 
+                  autocomplete="off"
+                  value="1">
+                  <option value="1">RS</option>
+                  <option value="2">SP</option>
+                </select>
+                <div *ngIf="formActivity.controls.ufEndId.invalid && formActivity.controls.ufEndId.touched">
+                  <span *ngIf="formActivity.controls.ufEndId.errors.required" class="form-control alert-danger">
+                      Campo UF de destino obrigatório
+                  </span>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label class="form-label">Cidade de saída (*)</label>
+                <select 
+                  formControlName="cityEndId"
+                  name="cityEndId"
+                  [(ngModel)]="act.cityEndId"
+                  class="form-control" 
+                  autocomplete="off"
+                  value="1">
+                  <option value="1">Porto Alegre</option>
+                  <option value="2">Campinas</option>
+                  <option value="3">Sapiranga</option>
+                </select>
+                <div *ngIf="formActivity.controls.cityEndId.invalid && formActivity.controls.cityEndId.touched">
+                  <span *ngIf="formActivity.controls.cityEndId.errors.required" class="form-control alert-danger">
+                      Campo Cidade de destino obrigatório
+                  </span>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label class="form-label">Ponto de referência inicial</label>
+                <input 
+                  formControlName="referencePointStart"
+                  name="referencePointStart"
+                  [(ngModel)]="act.referencePointStart"
+                  class="form-control" 
+                  autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Ponto de referência final</label>
+                <input 
+                  formControlName="referencePointEnd"
+                  name="referencePointEnd"
+                  [(ngModel)]="act.referencePointEnd"
+                  class="form-control" 
+                  autocomplete="off">
+              </div>
+              <div class="form-footer">
+                <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

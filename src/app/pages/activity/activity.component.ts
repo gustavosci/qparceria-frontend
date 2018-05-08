@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivityDTO } from '../../model/activity.dto';
+import { ActivityService } from "../../services/domain/activity.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { StorageService } from '../../services/storage.service';
 import { ActivatedRoute, Router } from "@angular/router";
@@ -14,7 +15,8 @@ import { STORAGE_KEYS } from '../../config/storage-keys.config';
 })
 export class ActivityComponent implements OnInit {
 
-  activity: ActivityDTO = {
+  act: ActivityDTO = {
+    id: "",
     referencePointStart: "",
     referencePointEnd: "",
     ufStartId: "",
@@ -51,16 +53,17 @@ export class ActivityComponent implements OnInit {
     },
     sportId: ""
   }
-
   formActivity: FormGroup;
   newActivity: boolean;
 
-  constructor(public storage: StorageService,
+  constructor(public actService: ActivityService, 
+              public storage: StorageService,
               public formBuilder: FormBuilder,
               public route: ActivatedRoute,
               public router: Router) { }
 
   ngOnInit() {
+    this.newActivity = true;
     this.loadFormActivity();    
   }
 
@@ -98,6 +101,39 @@ export class ActivityComponent implements OnInit {
         averageSpeed: [],
         minPeople: [],
       });
+  }
+
+  submit(event) {        
+    event.preventDefault();
+    if(this.formActivity.valid){
+      this.save();
+    } else {
+      alert('Existem campos inválidos! Por favor, ajuste-os e envie novamente.');
+      this.markFieldsTouched();
+    }
+  }
+
+  private save() {
+    this.actService.save(this.act)
+      .subscribe(res => {
+        if(this.newActivity){
+          alert("Atividade incluída com sucesso :)");
+        } else {
+          alert("Atividade alterada com sucesso :)");
+        }
+        this.router.navigate(['']);
+      }, error => {
+        if(!this.newActivity && error.status === 403){
+          alert('Sessão expirada!\nFavor logar novamente.');
+        }
+      })
+  }
+
+  private markFieldsTouched() {
+    Object.keys(this.formActivity.controls).forEach(field => {
+      const control = this.formActivity.get(field);
+      control.markAsTouched();
+    })
   }
 
 }

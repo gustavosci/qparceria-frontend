@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/domain/user.service';
+import { ActivityService } from './services/domain/activity.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorInterceptorProvider } from './interceptor/error-interceptor';
 import { StorageService } from './services/storage.service';
@@ -42,6 +43,7 @@ import { AuthInterceptorProvider } from './interceptor/auth-interceptor';
   providers: [
     AuthService,
     UserService,
+    ActivityService,
     AuthInterceptorProvider,
     ErrorInterceptorProvider,
     StorageService    

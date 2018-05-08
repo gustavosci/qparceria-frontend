@@ -2,6 +2,7 @@ import { ActivityScheduleDTO } from "./activityschedule.dto";
 import { ActivityDetailsDTO } from "./activitydetails.dto";
 
 export interface ActivityDTO {
+	id: string;
 	referencePointStart: string;
 	referencePointEnd: string;
 	ufStartId: string;
