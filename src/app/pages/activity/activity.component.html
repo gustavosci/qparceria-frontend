@@ -116,6 +116,247 @@
                   class="form-control" 
                   autocomplete="off">
               </div>
+              <div class="form-group">
+                <label class="form-label">Tipo de rota</label>
+                <input 
+                  formControlName="typeRoute"
+                  name="typeRoute"
+                  [(ngModel)]="act.typeRoute"
+                  class="form-control" 
+                  autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Nome de rota</label>
+                <input 
+                  formControlName="nameRoute"
+                  name="nameRoute"
+                  [(ngModel)]="act.nameRoute"
+                  class="form-control" 
+                  autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Horário de início</label>
+                <input 
+                  formControlName="timeStart"
+                  name="timeStart"
+                  [(ngModel)]="act.timeStart"
+                  class="form-control" 
+                  autocomplete="off"
+                  placeholder="hh:mm:ss">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Tempo total</label>
+                <input 
+                  formControlName="totalTime"
+                  name="totalTime"
+                  [(ngModel)]="act.totalTime"
+                  class="form-control" 
+                  autocomplete="off"
+                  placeholder="hh:mm:ss">
+              </div>
+              <div class="card-title">Agenda</div>
+              <div class="form-group">
+                <label class="form-label">Frequência</label>
+                <select 
+                  formControlName="frequency"
+                  name="frequency"
+                  [(ngModel)]="act.schedule.frequency"
+                  class="form-control" 
+                  autocomplete="off"
+                  value="0">
+                  <option value="0">Data específica</option>
+                  <option value="1">Regular</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Data</label>
+                <input 
+                  formControlName="date"
+                  name="date"
+                  [(ngModel)]="act.schedule.date"
+                  class="form-control" 
+                  autocomplete="off"
+                  placeholder="dd/mm/yyyy">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Segunda</label>
+                <input 
+                  formControlName="monday"
+                  name="monday"
+                  [(ngModel)]="act.schedule.monday"
+                  class="form-control" 
+                  type="checkbox"
+                  autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Terça</label>
+                <input 
+                  formControlName="tuesday"
+                  name="tuesday"
+                  [(ngModel)]="act.schedule.tuesday"
+                  class="form-control" 
+                  type="checkbox"
+                  autocomplete="off">  
+              </div>
+              <div class="form-group">
+                <label class="form-label">Quarta</label>
+                <input 
+                  formControlName="wednesday"
+                  name="wednesday"
+                  [(ngModel)]="act.schedule.wednesday"
+                  class="form-control" 
+                  type="checkbox"
+                  autocomplete="off">  
+              </div>
+              <div class="form-group">
+                <label class="form-label">Quinta</label>
+                <input 
+                  formControlName="thursday"
+                  name="thursday"
+                  [(ngModel)]="act.schedule.thursday"
+                  class="form-control" 
+                  type="checkbox"
+                  autocomplete="off">  
+              </div>
+              <div class="form-group">
+                <label class="form-label">Sexta</label>
+                <input 
+                  formControlName="friday"
+                  name="friday"
+                  [(ngModel)]="act.schedule.friday"
+                  class="form-control" 
+                  type="checkbox"
+                  autocomplete="off">  
+              </div>
+              <div class="form-group">
+                <label class="form-label">Sábado</label>
+                <input 
+                  formControlName="saturday"
+                  name="saturday"
+                  [(ngModel)]="act.schedule.saturday"
+                  class="form-control" 
+                  type="checkbox"
+                  autocomplete="off">  
+              </div>
+              <div class="form-group">
+                <label class="form-label">Domingo</label>
+                <input 
+                  formControlName="sunday"
+                  name="sunday"
+                  [(ngModel)]="act.schedule.sunday"
+                  class="form-control" 
+                  type="checkbox"
+                  autocomplete="off">  
+              </div>
+              <div class="card-title">Tempo</div>
+              <div class="form-group">
+                  <label class="form-label">Chuva</label>
+                  <input 
+                    formControlName="happenOnRain"
+                    name="happenOnRain"
+                    [(ngModel)]="act.details.happenOnRain"
+                    class="form-control" 
+                    type="checkbox"
+                    autocomplete="off">  
+              </div>
+              <div class="form-group">
+                  <label class="form-label">Sol</label>
+                  <input 
+                    formControlName="happenOnSun"
+                    name="happenOnSun"
+                    [(ngModel)]="act.details.happenOnSun"
+                    class="form-control" 
+                    type="checkbox"
+                    autocomplete="off">  
+              </div>
+              <div class="form-group">
+                  <label class="form-label">Calor</label>
+                  <input 
+                    formControlName="happenOnHeat"
+                    name="happenOnHeat"
+                    [(ngModel)]="act.details.happenOnHeat"
+                    class="form-control" 
+                    type="checkbox"
+                    autocomplete="off">  
+              </div>
+              <div class="form-group">
+                  <label class="form-label">Frio</label>
+                  <input 
+                    formControlName="happenOnCold"
+                    name="happenOnCold"
+                    [(ngModel)]="act.details.happenOnCold"
+                    class="form-control" 
+                    type="checkbox"
+                    autocomplete="off">  
+              </div>
+              <div class="card-title">Nível</div>
+              <div class="form-group">
+                  <label class="form-label">Iniciante</label>
+                  <input 
+                    formControlName="forBegginers"
+                    name="forBegginers"
+                    [(ngModel)]="act.details.forBegginers"
+                    class="form-control" 
+                    type="checkbox"
+                    autocomplete="off">  
+              </div>
+              <div class="form-group">
+                  <label class="form-label">Regular</label>
+                  <input 
+                    formControlName="forRegulars"
+                    name="forRegulars"
+                    [(ngModel)]="act.details.forRegulars"
+                    class="form-control" 
+                    type="checkbox"
+                    autocomplete="off">  
+              </div>
+              <div class="form-group">
+                  <label class="form-label">Experientes</label>
+                  <input 
+                    formControlName="forExperts"
+                    name="forExperts"
+                    [(ngModel)]="act.details.forExperts"
+                    class="form-control" 
+                    type="checkbox"
+                    autocomplete="off">  
+              </div>
+              <div class="card-title">Detalhes</div>
+              <div class="form-group">
+                  <label class="form-label">Distância</label>
+                  <input 
+                    formControlName="distance"
+                    name="distance"
+                    [(ngModel)]="act.details.distance"
+                    class="form-control" 
+                    autocomplete="off">  
+              </div>
+              <div class="form-group">
+                  <label class="form-label">Altimetria</label>
+                  <input 
+                    formControlName="altimetry"
+                    name="altimetry"
+                    [(ngModel)]="act.details.altimetry"
+                    class="form-control" 
+                    autocomplete="off">  
+              </div>
+              <div class="form-group">
+                  <label class="form-label">Velocidade média</label>
+                  <input 
+                    formControlName="averageSpeed"
+                    name="averageSpeed"
+                    [(ngModel)]="act.details.averageSpeed"
+                    class="form-control" 
+                    autocomplete="off">  
+              </div>
+              <div class="form-group">
+                  <label class="form-label">Quantidade mínima de pessoas</label>
+                  <input 
+                    formControlName="minPeople"
+                    name="minPeople"
+                    [(ngModel)]="act.details.minPeople"
+                    class="form-control" 
+                    autocomplete="off">  
+              </div>
               <div class="form-footer">
                 <button type="submit" class="btn btn-primary btn-block">Salvar</button>
               </div>

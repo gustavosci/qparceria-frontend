@@ -28,7 +28,7 @@ export class ActivityComponent implements OnInit {
     timeStart: "",
     totalTime: "",
     schedule: {
-      frequency: "1",
+      frequency: "0",
       date: "",
       monday: false,
       tuesday: false,

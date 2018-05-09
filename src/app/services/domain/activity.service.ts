@@ -20,7 +20,7 @@ export class ActivityService {
   }
 
   private insert(act: ActivityDTO){
-    console.log(act);
+    console.log(JSON.stringify(act));
     return this.http.post(
         API_CONFIG.urlActivity,
         act,
