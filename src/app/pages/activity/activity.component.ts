@@ -51,7 +51,8 @@ export class ActivityComponent implements OnInit {
       averageSpeed: "",
       minPeople: ""
     },
-    sportId: ""
+    sportId: "",
+    ownerId: ""
   }
   formActivity: FormGroup;
   newActivity: boolean;

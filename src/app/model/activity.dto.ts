@@ -16,4 +16,5 @@ export interface ActivityDTO {
 	schedule: ActivityScheduleDTO;
 	details: ActivityDetailsDTO;
 	sportId: string;
+	ownerId: string;
 }
