@@ -12,10 +12,6 @@ export class ActivityService {
   constructor(public http: HttpClient, public storage: StorageService) {
   }
 
-  findAllActOfUserLogged() : Observable<ActivitySimpleConsultDTO[]>{
-    return this.http.get<ActivitySimpleConsultDTO[]>(`${API_CONFIG.urlActivity}/my`);    
-  }
-
   save(act: ActivityDTO){        
     if(act.id){
         return this.update(act);
@@ -49,6 +45,15 @@ export class ActivityService {
 
   findById(id: String) : Observable<ActivityDTO>{    
     return this.http.get<ActivityDTO>(`${API_CONFIG.urlActivity}/${id}`);       
+  }
+
+  findAllActOfUserLogged() : Observable<ActivitySimpleConsultDTO[]>{
+    return this.http.get<ActivitySimpleConsultDTO[]>(`${API_CONFIG.urlActivity}/my`);    
+  }
+
+  search(sportid: String, citystartid: string) : Observable<ActivitySimpleConsultDTO[]>{    
+    return this.http.get<ActivitySimpleConsultDTO[]>(
+      `${API_CONFIG.urlActivity}/search?sport=${sportid}&citystart=${citystartid}`);
   }
 
 }

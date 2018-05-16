@@ -1,0 +1,90 @@
+<div class="page">
+    <div class="page-single">
+      <div class="container">
+        <div class="row">
+          <div class="col col-login mx-auto">
+            <form [formGroup]="formSearch" class="card" (submit)="submit($event)">
+              <div class="card-body p-6">
+                <div class="form-group">
+                    <label class="form-label">Esporte (*)</label>
+                    <select 
+                      formControlName="sportId"
+                      name="sportId"
+                      [(ngModel)]="sportId"
+                      class="form-control" 
+                      autocomplete="off"
+                      value="1">
+                      <option value="1">Corrida</option>
+                      <option value="2">Ciclismo</option>
+                      <option value="3">Caminhada</option>
+                    </select>
+                    <div *ngIf="formSearch.controls.sportId.invalid && formSearch.controls.sportId.touched">
+                      <span *ngIf="formSearch.controls.sportId.errors.required" class="form-control alert-danger">
+                          Campo Esporte obrigatório
+                      </span>
+                    </div>  
+                </div>    
+                <div class="form-group">
+                  <label class="form-label">UF partida (*)</label>
+                  <select 
+                    formControlName="ufStartId"
+                    name="ufStartId"
+                    [(ngModel)]="ufStartId"
+                    class="form-control" 
+                    autocomplete="off"
+                    value="1">
+                    <option value="1">RS</option>
+                    <option value="2">SP</option>
+                  </select>
+                  <div *ngIf="formSearch.controls.ufStartId.invalid && formSearch.controls.ufStartId.touched">
+                    <span *ngIf="formSearch.controls.ufStartId.errors.required" class="form-control alert-danger">
+                        Campo UF de saída obrigatório
+                    </span>
+                  </div>  
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Cidade de partida (*)</label>
+                  <select 
+                    formControlName="cityStartId"
+                    name="cityStartId"
+                    [(ngModel)]="cityStartId"
+                    class="form-control" 
+                    autocomplete="off"
+                    value="1">
+                    <option value="1">Porto Alegre</option>
+                    <option value="2">Campinas</option>
+                    <option value="3">Sapiranga</option>
+                  </select>
+                  <div *ngIf="formSearch.controls.cityStartId.invalid && formSearch.controls.cityStartId.touched">
+                    <span *ngIf="formSearch.controls.cityStartId.errors.required" class="form-control alert-danger">
+                        Campo Cidade de saída obrigatório
+                    </span>
+                  </div>  
+                </div>
+                <div class="form-footer">
+                  <button type="submit" [disabled]="formSearch.invalid" class="btn btn-primary btn-block">Buscar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row col col-login mx-auto">
+            <h3 *ngIf="!this.acts[0]">Nenhuma atividade a ser exibida :(</h3>
+            <div *ngIf="this.acts">
+              <app-panelactivity *ngFor="let act of acts" title="{{act.nameSport}}" class="col-md-3">
+                <app-simplelistact sport={{act.nameSport}}
+                                  citystart={{act.nameCityStart}}
+                                  ufstart={{act.siglaUFStart}}
+                                  cityend={{act.nameCityEnd}}
+                                  ufend={{act.siglaUFEnd}}
+                                  timestart={{act.timeStart}}
+                                  frequency={{act.describeFrequency}}
+                                  response={{act.nameOwner}}>
+                </app-simplelistact>
+                <button (click)="detailActivity()" class="btn btn-primary btn-block">Detalhes</button>  
+              </app-panelactivity>
+            </div>
+        </div>             
+      </div>
+    </div>
+  </div>

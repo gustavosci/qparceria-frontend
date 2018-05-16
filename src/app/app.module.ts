@@ -23,6 +23,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorInterceptorProvider } from './interceptor/error-interceptor';
 import { StorageService } from './services/storage.service';
 import { AuthInterceptorProvider } from './interceptor/auth-interceptor';
+import { SearchComponent } from './pages/search/search.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AuthInterceptorProvider } from './interceptor/auth-interceptor';
     HeaderComponent,
     FooterComponent,
     ActivityComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
