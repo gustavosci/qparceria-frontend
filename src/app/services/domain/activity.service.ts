@@ -46,4 +46,9 @@ export class ActivityService {
         }
     );    
   }
+
+  findById(id: String) : Observable<ActivityDTO>{    
+    return this.http.get<ActivityDTO>(`${API_CONFIG.urlActivity}/${id}`);       
+  }
+
 }

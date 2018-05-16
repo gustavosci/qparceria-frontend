@@ -10,6 +10,7 @@ const appRoutes: Routes = [
     { path: 'cadastro', component: CadastroComponent },
     { path: 'login', component: LoginComponent },
     { path: 'activity', component: ActivityComponent },
+    { path: 'activity/:id', component: ActivityComponent },
     { path: '**', component: HomeComponent }
 ];
 

@@ -65,6 +65,7 @@ export class ActivityComponent implements OnInit {
   ngOnInit() {
     this.newActivity = true;
     this.loadFormActivity();    
+    this.loadActivityUpdate();
   }
 
   private loadFormActivity(){
@@ -101,6 +102,31 @@ export class ActivityComponent implements OnInit {
         averageSpeed: [],
         minPeople: [],
       });
+  }
+
+  private loadActivityUpdate(){
+    this.route.params.subscribe(params => {
+      let id = params["id"];
+      if(id){
+          this.setActivityById(id);
+      }
+    })
+  }
+
+  private setActivityById(id){
+    this.actService
+    .findById(id)
+    .subscribe(
+        act => {
+            this.act = act;
+            this.newActivity = false;
+        },
+        err => { 
+           if(err.status === 403){
+            this.router.navigate(['/login']);
+           }            
+        }
+    );
   }
 
   submit(event) {        
