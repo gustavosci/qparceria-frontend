@@ -10,6 +10,8 @@ import { HeaderComponent } from './global/header/header.component';
 import { FooterComponent } from './global/footer/footer.component';
 import { ActivityComponent } from './pages/activity/activity.component';
 
+import { PanelActivityModule } from './global/panelactivity/panelactivity.module';
+import { SimpleListActModule } from './global/simplelistact/simplelistact.module';
 
 import 'rxjs/add/operator/map';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -38,7 +40,9 @@ import { AuthInterceptorProvider } from './interceptor/auth-interceptor';
     routing,        
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    PanelActivityModule,
+    SimpleListActModule
   ],
   providers: [
     AuthService,

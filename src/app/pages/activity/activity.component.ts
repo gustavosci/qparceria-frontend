@@ -136,4 +136,13 @@ export class ActivityComponent implements OnInit {
     })
   }
 
+  handleChangeFrequency(){
+    // TODO: Ver como buscar campo date
+    if(this.act.schedule.frequency === "2"){
+      this.formActivity.get("date").disabled;      
+    } else {
+      this.formActivity.get("date").enable;
+    }
+  }
+
 }

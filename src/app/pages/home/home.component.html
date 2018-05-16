@@ -1,7 +1,21 @@
 <div class="container">
   <div class="page-header">
     <h1 class="page-title">
-      Bem vindo(a), <span *ngIf="this.storage.getLocalUser()">{{this.storage.getLocalUser().username}}</span>!
+      Bem vindo(a), <span *ngIf="this.storage.getLocalUser()">{{this.storage.getLocalUser().username}}</span>! Suas atividades:
     </h1>
   </div>
+  <div class="row">
+      <app-panelactivity *ngFor="let act of acts" title="{{act.nameSport}}" class="col-md-3">
+        <app-simplelistact sport={{act.nameSport}}
+                          citystart={{act.nameCityStart}}
+                          ufstart={{act.siglaUFStart}}
+                          cityend={{act.nameCityEnd}}
+                          ufend={{act.siglaUFEnd}}
+                          timestart={{act.timeStart}}
+                          frequency={{act.describeFrequency}}
+                          response={{act.nameOwner}}>
+        </app-simplelistact>
+        <button (click)="updateActivity(act)" class="btn btn-danger btn-block">Alterar</button>
+      </app-panelactivity>
+  </div>     
 </div>

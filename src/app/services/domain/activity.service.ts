@@ -4,11 +4,16 @@ import { API_CONFIG } from '../../config/api.config';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { StorageService } from '../storage.service';
+import { ActivitySimpleConsultDTO } from '../../model/activitysimpleconsult.dto';
 
 @Injectable()
 export class ActivityService {
 
   constructor(public http: HttpClient, public storage: StorageService) {
+  }
+
+  findAllActOfUserLogged() : Observable<ActivitySimpleConsultDTO[]>{
+    return this.http.get<ActivitySimpleConsultDTO[]>(`${API_CONFIG.urlActivity}/my`);    
   }
 
   save(act: ActivityDTO){        

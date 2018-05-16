@@ -163,6 +163,7 @@
                   [(ngModel)]="act.schedule.frequency"
                   class="form-control" 
                   autocomplete="off"
+                  (change)="handleChangeFrequency()"
                   value="0">
                   <option value="0">Data específica</option>
                   <option value="1">Regular</option>
