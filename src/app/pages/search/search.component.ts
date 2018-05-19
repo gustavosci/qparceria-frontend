@@ -13,9 +13,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class SearchComponent implements OnInit {
 
-  sportId: string;
-  ufStartId: string;
-  cityStartId: string;
+  sportId: string = "1";
+  ufStartId: string = "1";
+  cityStartId: string = "1";
 
   acts: ActivitySimpleConsultDTO[] = [];
 
@@ -24,18 +24,18 @@ export class SearchComponent implements OnInit {
   constructor(public formBuilder: FormBuilder,
               public route: ActivatedRoute,
               public router: Router,
-              public actService: ActivityService) { 
-    this.setFormSearch(formBuilder);
+              public actService: ActivityService) {   
   }
 
   ngOnInit() {
+    this.setFormSearch();
   }
 
-  private setFormSearch(formBuilder: FormBuilder){
-    this.formSearch = formBuilder.group({
-        sportId: ['', Validators.compose([Validators.required])],
-        ufStartId: ['', Validators.compose([Validators.required])],
-        cityStartId: ['', Validators.compose([Validators.required])]
+  private setFormSearch(){
+    this.formSearch = this.formBuilder.group({
+        sportId: ['1', Validators.compose([Validators.required])],
+        ufStartId: ['1', Validators.compose([Validators.required])],
+        cityStartId: ['1', Validators.compose([Validators.required])]
     });
   }
 

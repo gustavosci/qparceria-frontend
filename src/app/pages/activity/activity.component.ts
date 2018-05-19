@@ -19,10 +19,10 @@ export class ActivityComponent implements OnInit {
     id: "",
     referencePointStart: "",
     referencePointEnd: "",
-    ufStartId: "",
-    cityStartId: "",
-    ufEndId: "",
-    cityEndId: "",
+    ufStartId: "1",
+    cityStartId: "1",
+    ufEndId: "1",
+    cityEndId: "1",
     typeRoute: "",
     nameRoute: "",
     timeStart: "",
@@ -50,7 +50,7 @@ export class ActivityComponent implements OnInit {
       averageSpeed: "",
       minPeople: ""
     },
-    sportId: "",
+    sportId: "1",
     ownerId: ""
   }
   formActivity: FormGroup;
@@ -66,6 +66,7 @@ export class ActivityComponent implements OnInit {
     this.newActivity = true;
     this.loadFormActivity();    
     this.loadActivityUpdate();
+    this.handleChangeFrequency();
   }
 
   private loadFormActivity(){
@@ -169,12 +170,41 @@ export class ActivityComponent implements OnInit {
   }
 
   handleChangeFrequency(){
-    // TODO: Ver como buscar campo date
-    if(this.act.schedule.frequency === "2"){
-      this.formActivity.get("date").disabled;      
+    if(this.act.schedule.frequency === "0"){
+      this.enableDateAndDisableWeekDays();
     } else {
-      this.formActivity.get("date").enable;
+      this.enableWeekDaysAndDisableDate();
     }
+  }
+
+  private enableDateAndDisableWeekDays(){
+    this.act.schedule.monday = false;
+    this.act.schedule.tuesday = false;
+    this.act.schedule.wednesday = false;
+    this.act.schedule.thursday = false;
+    this.act.schedule.friday = false;
+    this.act.schedule.saturday = false;
+    this.act.schedule.sunday = false;      
+    this.formActivity.controls.date.enable();
+    this.formActivity.controls.monday.disable();
+    this.formActivity.controls.tuesday.disable();
+    this.formActivity.controls.wednesday.disable();
+    this.formActivity.controls.thursday.disable();
+    this.formActivity.controls.friday.disable();
+    this.formActivity.controls.saturday.disable();
+    this.formActivity.controls.sunday.disable();    
+  }
+
+  private enableWeekDaysAndDisableDate(){
+    this.act.schedule.date = "";
+    this.formActivity.controls.date.disable();
+    this.formActivity.controls.monday.enable();
+    this.formActivity.controls.tuesday.enable();
+    this.formActivity.controls.wednesday.enable();
+    this.formActivity.controls.thursday.enable();
+    this.formActivity.controls.friday.enable();
+    this.formActivity.controls.saturday.enable();
+    this.formActivity.controls.sunday.enable();
   }
 
 }
