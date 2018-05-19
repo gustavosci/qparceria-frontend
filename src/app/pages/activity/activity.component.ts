@@ -117,12 +117,19 @@ export class ActivityComponent implements OnInit {
     .findById(id)
     .subscribe(
         act => {
-            this.act = act;
-            this.newActivity = false;
+            if(act.ownerId !== this.storage.getLocalUser().id){
+              alert("Não é possível alterar uma atividade que você não é dono!");
+              this.router.navigate(['']);
+            } else {
+              this.act = act;
+              this.newActivity = false;  
+            }
         },
         err => { 
            if(err.status === 403){
             this.router.navigate(['/login']);
+           } else if(err.status === 404){
+            this.router.navigate(['']);
            }            
         }
     );

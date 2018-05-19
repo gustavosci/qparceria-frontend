@@ -34,6 +34,9 @@ export class ErrorInterceptor implements HttpInterceptor {
                 case 422:
                     this.handleError422(errorObj);
                     break;
+                case 404:
+                    this.handleError404(errorObj);
+                    break;
                 default:
                     this.handleErrorDefault(errorObj);
                     break;                    
@@ -53,6 +56,10 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     private handleError422(error){
         alert(this.stringfyListErrors(error.errors));
+    }
+
+    private handleError404(error){
+        alert("Registro não encontrado!");
     }
 
     private handleErrorDefault(error){
