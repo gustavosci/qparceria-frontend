@@ -12,7 +12,6 @@ export interface ActivityDTO {
 	typeRoute: string;
 	nameRoute: string;
 	timeStart: string;
-	totalTime: string;
 	schedule: ActivityScheduleDTO;
 	details: ActivityDetailsDTO;
 	sportId: string;

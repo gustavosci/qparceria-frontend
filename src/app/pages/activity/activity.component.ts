@@ -26,7 +26,6 @@ export class ActivityComponent implements OnInit {
     typeRoute: "",
     nameRoute: "",
     timeStart: "",
-    totalTime: "",
     schedule: {
       frequency: "0",
       date: "",
@@ -80,7 +79,6 @@ export class ActivityComponent implements OnInit {
         typeRoute: [],
         nameRoute: [],
         timeStart: [],
-        totalTime: [],
         sportId: ['1', Validators.compose([Validators.required])],
         frequency: [],
         date: [],
