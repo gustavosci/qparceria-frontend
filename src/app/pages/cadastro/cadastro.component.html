@@ -11,7 +11,6 @@
                 <label class="form-label">Nome (*)</label>
                 <input 
                   formControlName="name"
-                  name="name"
                   [(ngModel)]="user.name"
                   class="form-control" 
                   autocomplete="off">
@@ -28,7 +27,6 @@
                 <label class="form-label">Username (*)</label>
                 <input 
                   formControlName="username"
-                  name="username"
                   [(ngModel)]="user.username"
                   class="form-control" 
                   autocomplete="off">
@@ -42,7 +40,6 @@
                 <label class="form-label">E-mail (*)</label>
                 <input 
                   formControlName="email"
-                  name="email"
                   [(ngModel)]="user.email"
                   class="form-control" 
                   autocomplete="off"
@@ -61,7 +58,6 @@
                 <label class="form-label">Senha (*)</label>
                 <input 
                   formControlName="password"
-                  name="password"
                   [(ngModel)]="user.password"
                   class="form-control" 
                   autocomplete="off"
@@ -76,24 +72,17 @@
                 <label class="form-label">Sexo</label>
                 <select 
                   formControlName="gender"
-                  name="gender"
                   [(ngModel)]="user.gender"
                   class="form-control" 
                   autocomplete="off">
                   <option value="MASCULINO">Masculino</option>
                   <option value="FEMININO">Feminino</option>
                 </select>
-                <div *ngIf="formCadastro.controls.gender.invalid && formCadastro.controls.gender.touched">
-                  <span *ngIf="formCadastro.controls.gender.errors.required" class="form-control alert-danger">
-                      Campo Sexo Obrigatório
-                  </span>
-                </div>
               </div>            
               <div class="form-group">
                 <label class="form-label">Data de nascimento</label>
                 <input 
                   formControlName="birthDate"
-                  name="birthDate"
                   [(ngModel)]="user.birthDate"
                   class="form-control" 
                   autocomplete="off"
@@ -103,7 +92,6 @@
                 <label class="form-label">Telefone</label>
                 <input 
                   formControlName="phone"
-                  name="phone"
                   [(ngModel)]="user.phone"
                   class="form-control" 
                   autocomplete="off">
@@ -113,7 +101,6 @@
                 <label class="form-label">Logradouro</label>
                 <input 
                   formControlName="street"
-                  name="street"
                   [(ngModel)]="user.street"
                   class="form-control" 
                   autocomplete="off">
@@ -122,7 +109,6 @@
                 <label class="form-label">Número</label>
                 <input 
                   formControlName="number"
-                  name="number"
                   [(ngModel)]="user.number"
                   class="form-control" 
                   autocomplete="off">
@@ -131,7 +117,6 @@
                 <label class="form-label">Complemento</label>
                 <input 
                   formControlName="complement"
-                  name="complement"
                   [(ngModel)]="user.complement"
                   class="form-control" 
                   autocomplete="off">
@@ -140,7 +125,6 @@
                 <label class="form-label">Bairro</label>
                 <input 
                   formControlName="neighborhood"
-                  name="neighborhood"
                   [(ngModel)]="user.neighborhood"
                   class="form-control" 
                   autocomplete="off">
@@ -149,7 +133,6 @@
                 <label class="form-label">CEP</label>
                 <input 
                   formControlName="cep"
-                  name="cep"
                   [(ngModel)]="user.cep"
                   class="form-control" 
                   autocomplete="off">
@@ -158,7 +141,6 @@
                 <label class="form-label">UF</label>
                 <select 
                   formControlName="ufId"
-                  name="ufId"
                   [(ngModel)]="user.ufId"
                   class="form-control" 
                   autocomplete="off"
@@ -166,17 +148,11 @@
                   <option value="1">RS</option>
                   <option value="2">SP</option>
                 </select>
-                <div *ngIf="formCadastro.controls.ufId.invalid && formCadastro.controls.ufId.touched">
-                  <span *ngIf="formCadastro.controls.ufId.errors.required" class="form-control alert-danger">
-                      Campo UF obrigatório
-                  </span>
-                </div>  
               </div>
               <div class="form-group">
                 <label class="form-label">Cidade</label>
                 <select 
                   formControlName="cityId"
-                  name="cityId"
                   [(ngModel)]="user.cityId"
                   class="form-control" 
                   autocomplete="off"
@@ -185,18 +161,12 @@
                   <option value="2">Campinas</option>
                   <option value="3">Sapiranga</option>
                 </select>
-                <div *ngIf="formCadastro.controls.cityId.invalid && formCadastro.controls.cityId.touched">
-                  <span *ngIf="formCadastro.controls.cityId.errors.required" class="form-control alert-danger">
-                      Campo Cidade obrigatório
-                  </span>
-                </div>  
               </div>
               <div class="card-title">Esportes que curto</div>
               <div class="form-group">
                 <label class="form-label">Corrida</label>
                 <input 
                   formControlName="run"
-                  name="run"
                   [(ngModel)]="user.run"
                   class="form-control" 
                   type="checkbox"
@@ -206,7 +176,6 @@
                 <label class="form-label">Ciclismo</label>
                 <input 
                   formControlName="cyclism"
-                  name="cyclism"
                   [(ngModel)]="user.cyclism"
                   class="form-control" 
                   type="checkbox"
@@ -216,7 +185,6 @@
                 <label class="form-label">Caminhada</label>
                 <input 
                   formControlName="walk"
-                  name="walk"
                   [(ngModel)]="user.walk"
                   class="form-control" 
                   type="checkbox"
@@ -227,7 +195,6 @@
                 <label class="form-label">Facebook</label>
                 <input 
                   formControlName="facebook"
-                  name="facebook"
                   [(ngModel)]="user.facebook"
                   class="form-control" 
                   autocomplete="off">
@@ -236,7 +203,6 @@
                 <label class="form-label">Twitter</label>
                 <input 
                   formControlName="twitter"
-                  name="twitter"
                   [(ngModel)]="user.twitter"
                   class="form-control" 
                   autocomplete="off">
@@ -245,7 +211,6 @@
                 <label class="form-label">Instagram</label>
                 <input 
                   formControlName="instagram"
-                  name="instagram"
                   [(ngModel)]="user.instagram"
                   class="form-control" 
                   autocomplete="off">
@@ -254,7 +219,6 @@
                 <label class="form-label">Strava</label>
                 <input 
                   formControlName="strava"
-                  name="strava"
                   [(ngModel)]="user.strava"
                   class="form-control" 
                   autocomplete="off">

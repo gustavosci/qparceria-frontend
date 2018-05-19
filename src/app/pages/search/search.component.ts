@@ -33,9 +33,9 @@ export class SearchComponent implements OnInit {
 
   private setFormSearch(){
     this.formSearch = this.formBuilder.group({
-        sportId: ['1', Validators.compose([Validators.required])],
-        ufStartId: ['1', Validators.compose([Validators.required])],
-        cityStartId: ['1', Validators.compose([Validators.required])]
+        sportId: ['1'],
+        ufStartId: ['1'],
+        cityStartId: ['1']
     });
   }
 

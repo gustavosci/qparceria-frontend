@@ -6,29 +6,22 @@
           <form [formGroup]="formActivity" class="card" (submit)="submit($event)">
             <div class="card-body p-6">
               <div class="form-group">
-                  <label class="form-label">Esporte (*)</label>
-                  <select 
-                    formControlName="sportId"
-                    name="sportId"
-                    [(ngModel)]="act.sportId"
-                    class="form-control" 
-                    autocomplete="off"
-                    value="1">
-                    <option value="1">Corrida</option>
-                    <option value="2">Ciclismo</option>
-                    <option value="3">Caminhada</option>
-                  </select>
-                  <div *ngIf="formActivity.controls.sportId.invalid && formActivity.controls.sportId.touched">
-                    <span *ngIf="formActivity.controls.sportId.errors.required" class="form-control alert-danger">
-                        Campo Esporte obrigatório
-                    </span>
-                  </div>  
+                <label class="form-label">Esporte</label>
+                <select 
+                  formControlName="sportId"
+                  [(ngModel)]="act.sportId"
+                  class="form-control" 
+                  autocomplete="off"
+                  value="1">
+                  <option value="1">Corrida</option>
+                  <option value="2">Ciclismo</option>
+                  <option value="3">Caminhada</option>
+                </select>
               </div>    
               <div class="form-group">
-                <label class="form-label">UF saída (*)</label>
+                <label class="form-label">UF saída</label>
                 <select 
                   formControlName="ufStartId"
-                  name="ufStartId"
                   [(ngModel)]="act.ufStartId"
                   class="form-control" 
                   autocomplete="off"
@@ -36,17 +29,11 @@
                   <option value="1">RS</option>
                   <option value="2">SP</option>
                 </select>
-                <div *ngIf="formActivity.controls.ufStartId.invalid && formActivity.controls.ufStartId.touched">
-                  <span *ngIf="formActivity.controls.ufStartId.errors.required" class="form-control alert-danger">
-                      Campo UF de saída obrigatório
-                  </span>
-                </div>  
               </div>
               <div class="form-group">
-                <label class="form-label">Cidade de saída (*)</label>
+                <label class="form-label">Cidade de saída</label>
                 <select 
                   formControlName="cityStartId"
-                  name="cityStartId"
                   [(ngModel)]="act.cityStartId"
                   class="form-control" 
                   autocomplete="off"
@@ -55,17 +42,11 @@
                   <option value="2">Campinas</option>
                   <option value="3">Sapiranga</option>
                 </select>
-                <div *ngIf="formActivity.controls.cityStartId.invalid && formActivity.controls.cityStartId.touched">
-                  <span *ngIf="formActivity.controls.cityStartId.errors.required" class="form-control alert-danger">
-                      Campo Cidade de saída obrigatório
-                  </span>
-                </div>  
               </div>
               <div class="form-group">
-                <label class="form-label">UF destino (*)</label>
+                <label class="form-label">UF destino</label>
                 <select 
                   formControlName="ufEndId"
-                  name="ufEndId"
                   [(ngModel)]="act.ufEndId"
                   class="form-control" 
                   autocomplete="off"
@@ -73,17 +54,11 @@
                   <option value="1">RS</option>
                   <option value="2">SP</option>
                 </select>
-                <div *ngIf="formActivity.controls.ufEndId.invalid && formActivity.controls.ufEndId.touched">
-                  <span *ngIf="formActivity.controls.ufEndId.errors.required" class="form-control alert-danger">
-                      Campo UF de destino obrigatório
-                  </span>
-                </div>  
               </div>
               <div class="form-group">
-                <label class="form-label">Cidade de saída (*)</label>
+                <label class="form-label">Cidade de saída</label>
                 <select 
                   formControlName="cityEndId"
-                  name="cityEndId"
                   [(ngModel)]="act.cityEndId"
                   class="form-control" 
                   autocomplete="off"
@@ -92,17 +67,11 @@
                   <option value="2">Campinas</option>
                   <option value="3">Sapiranga</option>
                 </select>
-                <div *ngIf="formActivity.controls.cityEndId.invalid && formActivity.controls.cityEndId.touched">
-                  <span *ngIf="formActivity.controls.cityEndId.errors.required" class="form-control alert-danger">
-                      Campo Cidade de destino obrigatório
-                  </span>
-                </div>  
               </div>
               <div class="form-group">
                 <label class="form-label">Ponto de referência inicial</label>
                 <input 
                   formControlName="referencePointStart"
-                  name="referencePointStart"
                   [(ngModel)]="act.referencePointStart"
                   class="form-control" 
                   autocomplete="off">
@@ -111,7 +80,6 @@
                 <label class="form-label">Ponto de referência final</label>
                 <input 
                   formControlName="referencePointEnd"
-                  name="referencePointEnd"
                   [(ngModel)]="act.referencePointEnd"
                   class="form-control" 
                   autocomplete="off">
@@ -120,7 +88,6 @@
                 <label class="form-label">Tipo de rota</label>
                 <input 
                   formControlName="typeRoute"
-                  name="typeRoute"
                   [(ngModel)]="act.typeRoute"
                   class="form-control" 
                   autocomplete="off">
@@ -129,7 +96,6 @@
                 <label class="form-label">Nome de rota</label>
                 <input 
                   formControlName="nameRoute"
-                  name="nameRoute"
                   [(ngModel)]="act.nameRoute"
                   class="form-control" 
                   autocomplete="off">
@@ -138,7 +104,6 @@
                 <label class="form-label">Horário de início</label>
                 <input 
                   formControlName="timeStart"
-                  name="timeStart"
                   [(ngModel)]="act.timeStart"
                   class="form-control" 
                   autocomplete="off"
@@ -149,21 +114,18 @@
                 <label class="form-label">Frequência</label>
                 <select 
                   formControlName="frequency"
-                  name="frequency"
                   [(ngModel)]="act.schedule.frequency"
                   class="form-control" 
                   autocomplete="off"
-                  (change)="handleChangeFrequency()"
-                  value="1">
-                  <option value="0">Data específica</option>
-                  <option value="1">Regular</option>
+                  (change)="handleChangeFrequency()">
+                  <option value="SPECIFIC_DATE">Data específica</option>
+                  <option value="REGULAR">Regular</option>
                 </select>
               </div>
               <div class="form-group">
                 <label class="form-label">Data</label>
                 <input 
                   formControlName="date"
-                  name="date"
                   [(ngModel)]="act.schedule.date"
                   class="form-control" 
                   autocomplete="off"
@@ -173,7 +135,6 @@
                 <label class="form-label">Segunda</label>
                 <input 
                   formControlName="monday"
-                  name="monday"
                   [(ngModel)]="act.schedule.monday"
                   class="form-control" 
                   type="checkbox"
@@ -183,7 +144,6 @@
                 <label class="form-label">Terça</label>
                 <input 
                   formControlName="tuesday"
-                  name="tuesday"
                   [(ngModel)]="act.schedule.tuesday"
                   class="form-control" 
                   type="checkbox"
@@ -193,7 +153,6 @@
                 <label class="form-label">Quarta</label>
                 <input 
                   formControlName="wednesday"
-                  name="wednesday"
                   [(ngModel)]="act.schedule.wednesday"
                   class="form-control" 
                   type="checkbox"
@@ -203,7 +162,6 @@
                 <label class="form-label">Quinta</label>
                 <input 
                   formControlName="thursday"
-                  name="thursday"
                   [(ngModel)]="act.schedule.thursday"
                   class="form-control" 
                   type="checkbox"
@@ -213,7 +171,6 @@
                 <label class="form-label">Sexta</label>
                 <input 
                   formControlName="friday"
-                  name="friday"
                   [(ngModel)]="act.schedule.friday"
                   class="form-control" 
                   type="checkbox"
@@ -223,7 +180,6 @@
                 <label class="form-label">Sábado</label>
                 <input 
                   formControlName="saturday"
-                  name="saturday"
                   [(ngModel)]="act.schedule.saturday"
                   class="form-control" 
                   type="checkbox"
@@ -233,7 +189,6 @@
                 <label class="form-label">Domingo</label>
                 <input 
                   formControlName="sunday"
-                  name="sunday"
                   [(ngModel)]="act.schedule.sunday"
                   class="form-control" 
                   type="checkbox"
@@ -244,7 +199,6 @@
                   <label class="form-label">Chuva</label>
                   <input 
                     formControlName="happenOnRain"
-                    name="happenOnRain"
                     [(ngModel)]="act.details.happenOnRain"
                     class="form-control" 
                     type="checkbox"
@@ -254,7 +208,6 @@
                   <label class="form-label">Sol</label>
                   <input 
                     formControlName="happenOnSun"
-                    name="happenOnSun"
                     [(ngModel)]="act.details.happenOnSun"
                     class="form-control" 
                     type="checkbox"
@@ -264,7 +217,6 @@
                   <label class="form-label">Calor</label>
                   <input 
                     formControlName="happenOnHeat"
-                    name="happenOnHeat"
                     [(ngModel)]="act.details.happenOnHeat"
                     class="form-control" 
                     type="checkbox"
@@ -274,7 +226,6 @@
                   <label class="form-label">Frio</label>
                   <input 
                     formControlName="happenOnCold"
-                    name="happenOnCold"
                     [(ngModel)]="act.details.happenOnCold"
                     class="form-control" 
                     type="checkbox"
@@ -285,7 +236,6 @@
                   <label class="form-label">Iniciante</label>
                   <input 
                     formControlName="forBegginers"
-                    name="forBegginers"
                     [(ngModel)]="act.details.forBegginers"
                     class="form-control" 
                     type="checkbox"
@@ -295,7 +245,6 @@
                   <label class="form-label">Regular</label>
                   <input 
                     formControlName="forRegulars"
-                    name="forRegulars"
                     [(ngModel)]="act.details.forRegulars"
                     class="form-control" 
                     type="checkbox"
@@ -305,7 +254,6 @@
                   <label class="form-label">Experientes</label>
                   <input 
                     formControlName="forExperts"
-                    name="forExperts"
                     [(ngModel)]="act.details.forExperts"
                     class="form-control" 
                     type="checkbox"
@@ -316,7 +264,6 @@
                   <label class="form-label">Distância</label>
                   <input 
                     formControlName="distance"
-                    name="distance"
                     [(ngModel)]="act.details.distance"
                     class="form-control" 
                     autocomplete="off">  
@@ -325,7 +272,6 @@
                   <label class="form-label">Altimetria</label>
                   <input 
                     formControlName="altimetry"
-                    name="altimetry"
                     [(ngModel)]="act.details.altimetry"
                     class="form-control" 
                     autocomplete="off">  
@@ -334,7 +280,6 @@
                   <label class="form-label">Velocidade média</label>
                   <input 
                     formControlName="averageSpeed"
-                    name="averageSpeed"
                     [(ngModel)]="act.details.averageSpeed"
                     class="form-control" 
                     autocomplete="off">  
@@ -343,7 +288,6 @@
                   <label class="form-label">Quantidade mínima de pessoas</label>
                   <input 
                     formControlName="minPeople"
-                    name="minPeople"
                     [(ngModel)]="act.details.minPeople"
                     class="form-control" 
                     autocomplete="off">  

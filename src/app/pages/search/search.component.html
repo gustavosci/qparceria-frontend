@@ -6,7 +6,7 @@
             <form [formGroup]="formSearch" class="card" (submit)="submit($event)">
               <div class="card-body p-6">
                 <div class="form-group">
-                    <label class="form-label">Esporte (*)</label>
+                    <label class="form-label">Esporte</label>
                     <select 
                       formControlName="sportId"
                       [(ngModel)]="sportId"
@@ -16,14 +16,9 @@
                       <option value="2">Ciclismo</option>
                       <option value="3">Caminhada</option>
                     </select>
-                    <div *ngIf="formSearch.controls.sportId.invalid && formSearch.controls.sportId.touched">
-                      <span *ngIf="formSearch.controls.sportId.errors.required" class="form-control alert-danger">
-                          Campo Esporte obrigatório
-                      </span>
-                    </div>  
                 </div>    
                 <div class="form-group">
-                  <label class="form-label">UF partida (*)</label>
+                  <label class="form-label">UF partida</label>
                   <select 
                     formControlName="ufStartId"
                     [(ngModel)]="ufStartId"
@@ -32,14 +27,9 @@
                     <option value="1">RS</option>
                     <option value="2">SP</option>
                   </select>
-                  <div *ngIf="formSearch.controls.ufStartId.invalid && formSearch.controls.ufStartId.touched">
-                    <span *ngIf="formSearch.controls.ufStartId.errors.required" class="form-control alert-danger">
-                        Campo UF de saída obrigatório
-                    </span>
-                  </div>  
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Cidade de partida (*)</label>
+                  <label class="form-label">Cidade de partida</label>
                   <select 
                     formControlName="cityStartId"
                     [(ngModel)]="cityStartId"
@@ -49,11 +39,6 @@
                     <option value="2">Campinas</option>
                     <option value="3">Sapiranga</option>
                   </select>
-                  <div *ngIf="formSearch.controls.cityStartId.invalid && formSearch.controls.cityStartId.touched">
-                    <span *ngIf="formSearch.controls.cityStartId.errors.required" class="form-control alert-danger">
-                        Campo Cidade de saída obrigatório
-                    </span>
-                  </div>  
                 </div>
                 <div class="form-footer">
                   <button type="submit" [disabled]="formSearch.invalid" class="btn btn-primary btn-block">Buscar</button>

@@ -27,7 +27,7 @@ export class ActivityComponent implements OnInit {
     nameRoute: "",
     timeStart: "",
     schedule: {
-      frequency: "0",
+      frequency: "SPECIFIC_DATE",
       date: "",
       monday: false,
       tuesday: false,
@@ -73,14 +73,14 @@ export class ActivityComponent implements OnInit {
     this.formActivity = this.formBuilder.group({
         referencePointStart: [],
         referencePointEnd: [],
-        ufStartId: ['1', Validators.compose([Validators.required])],
-        cityStartId: ['1', Validators.compose([Validators.required])],
-        ufEndId: ['1', Validators.compose([Validators.required])],
-        cityEndId: ['1', Validators.compose([Validators.required])],
+        ufStartId: ['1'],
+        cityStartId: ['1'],
+        ufEndId: ['1'],
+        cityEndId: ['1'],
         typeRoute: [],
         nameRoute: [],
         timeStart: [],
-        sportId: ['1', Validators.compose([Validators.required])],
+        sportId: ['1'],
         frequency: [],
         date: [],
         monday: [],
@@ -170,7 +170,7 @@ export class ActivityComponent implements OnInit {
   }
 
   handleChangeFrequency(){
-    if(this.act.schedule.frequency === "0"){
+    if(this.act.schedule.frequency === "SPECIFIC_DATE"){
       this.enableDateAndDisableWeekDays();
     } else {
       this.enableWeekDaysAndDisableDate();
