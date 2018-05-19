@@ -68,7 +68,7 @@
             </form>
           </div>
         </div>
-        <div class="row col col-login mx-auto">
+        <div class="col col-login mx-auto">
             <h3 *ngIf="!this.acts[0]">Nenhuma atividade a ser exibida :(</h3>
             <div *ngIf="this.acts">
               <app-panelactivity *ngFor="let act of acts" title="{{act.nameSport}}" class="col-md-3">

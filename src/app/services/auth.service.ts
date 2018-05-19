@@ -42,7 +42,8 @@ export class AuthService {
     let userSS : LocalUser = {
       token: tok,
       username: this.jwtHelper.decodeToken(tok).sub,
-      id: ""
+      id: "",
+      name: ""
     };
     this.storage.setLocalUser(userSS); // Já será localuser neste ponto, pois é necessário para comunicação com userservice
     this.userService
@@ -50,6 +51,7 @@ export class AuthService {
       .subscribe(
         user => {
             userSS.id = user.id;
+            userSS.name = user.name;
             this.storage.setLocalUser(userSS);  
         },
         erro => { 
