@@ -86,7 +86,8 @@
                   [(ngModel)]="user.birthDate"
                   class="form-control" 
                   autocomplete="off"
-                  placeholder="dd/mm/yyyy">
+                  placeholder="dd/mm/yyyy"
+                  appMask="99/99/9999">
               </div>
               <div class="form-group">
                 <label class="form-label">Telefone</label>
@@ -94,7 +95,9 @@
                   formControlName="phone"
                   [(ngModel)]="user.phone"
                   class="form-control" 
-                  autocomplete="off">
+                  autocomplete="off"
+                  placeholder="(99)99999-9999"
+                  appMask="(99)99999-9999">
               </div>              
               <div class="card-title">Endereço</div>
               <div class="form-group">
@@ -135,7 +138,9 @@
                   formControlName="cep"
                   [(ngModel)]="user.cep"
                   class="form-control" 
-                  autocomplete="off">
+                  autocomplete="off"
+                  placeholder="99999-999"
+                  appMask="99999-999">
               </div>
               <div class="form-group">
                 <label class="form-label">UF</label>

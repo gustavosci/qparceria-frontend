@@ -13,6 +13,8 @@ import { ActivityComponent } from './pages/activity/activity.component';
 import { PanelActivityModule } from './global/panelactivity/panelactivity.module';
 import { SimpleListActModule } from './global/simplelistact/simplelistact.module';
 
+import  { AppMaskDirective } from './directives/appmask.directive';
+
 import 'rxjs/add/operator/map';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -35,6 +37,7 @@ import { SearchComponent } from './pages/search/search.component';
     FooterComponent,
     ActivityComponent,
     SearchComponent,
+    AppMaskDirective
   ],
   imports: [
     BrowserModule,

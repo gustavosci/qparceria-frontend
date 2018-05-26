@@ -107,7 +107,8 @@
                   [(ngModel)]="act.timeStart"
                   class="form-control" 
                   autocomplete="off"
-                  placeholder="hh:mm:ss">
+                  placeholder="hh:mm:ss"
+                  appMask="99:99:99">
               </div>
               <div class="card-title">Agenda</div>
               <div class="form-group">
@@ -129,7 +130,8 @@
                   [(ngModel)]="act.schedule.date"
                   class="form-control" 
                   autocomplete="off"
-                  placeholder="dd/mm/yyyy">
+                  placeholder="dd/mm/yyyy"
+                  [(appMask)]="this.maskDate">
               </div>
               <div class="form-group">
                 <label class="form-label">Segunda</label>

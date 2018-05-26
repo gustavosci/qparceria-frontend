@@ -55,6 +55,7 @@ export class ActivityComponent implements OnInit {
   }
   formActivity: FormGroup;
   newActivity: boolean;
+  maskDate: string; // criado para indicar dinamicante a mascará do campo de data. Fixando no HTML, não estava permitindo desabilitar o campo
 
   constructor(public actService: ActivityService, 
               public storage: StorageService,
@@ -65,8 +66,7 @@ export class ActivityComponent implements OnInit {
   ngOnInit() {
     this.newActivity = true;
     this.loadFormActivity();    
-    this.loadActivityUpdate();
-    this.handleChangeFrequency();
+    this.loadActivityUpdate();    
   }
 
   private loadFormActivity(){
@@ -109,6 +109,8 @@ export class ActivityComponent implements OnInit {
       let id = params["id"];
       if(id){
           this.setActivityById(id);
+      } else {
+        this.handleChangeFrequency();
       }
     })
   }
@@ -124,6 +126,7 @@ export class ActivityComponent implements OnInit {
             } else {
               this.act = act;
               this.newActivity = false;  
+              this.handleChangeFrequency();
             }
         },
         err => { 
@@ -178,6 +181,7 @@ export class ActivityComponent implements OnInit {
   }
 
   private enableDateAndDisableWeekDays(){
+    this.maskDate = "99/99/9999";
     this.act.schedule.monday = false;
     this.act.schedule.tuesday = false;
     this.act.schedule.wednesday = false;
@@ -196,6 +200,7 @@ export class ActivityComponent implements OnInit {
   }
 
   private enableWeekDaysAndDisableDate(){
+    this.maskDate = "";
     this.act.schedule.date = "";
     this.formActivity.controls.date.disable();
     this.formActivity.controls.monday.enable();
