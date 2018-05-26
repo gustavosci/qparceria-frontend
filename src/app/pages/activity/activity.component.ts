@@ -55,7 +55,7 @@ export class ActivityComponent implements OnInit {
   }
   formActivity: FormGroup;
   newActivity: boolean;
-  maskDate: string; // criado para indicar dinamicante a mascará do campo de data. Fixando no HTML, não estava permitindo desabilitar o campo
+  maskDate: string; // criado para indicar dinamicante a mascará do campo de data. Fixando no HTML, não estava permitindo desabilitar o campo  
 
   constructor(public actService: ActivityService, 
               public storage: StorageService,
@@ -70,17 +70,19 @@ export class ActivityComponent implements OnInit {
   }
 
   private loadFormActivity(){
+    let doubleRE: string = "[0-9]*\\.?[0-9]?[0-9]?";
+    let integerRE: string = "[0-9]+";
     this.formActivity = this.formBuilder.group({
-        referencePointStart: [],
-        referencePointEnd: [],
-        ufStartId: ['1'],
-        cityStartId: ['1'],
-        ufEndId: ['1'],
-        cityEndId: ['1'],
-        typeRoute: [],
-        nameRoute: [],
+        referencePointStart: ['', [Validators.maxLength(25)]],
+        referencePointEnd: ['', [Validators.maxLength(25)]],
+        ufStartId: [],
+        cityStartId: [],
+        ufEndId: [],
+        cityEndId: [],
+        typeRoute: ['', [Validators.maxLength(25)]],
+        nameRoute: ['', [Validators.maxLength(25)]],
         timeStart: [],
-        sportId: ['1'],
+        sportId: [],
         frequency: [],
         date: [],
         monday: [],
@@ -97,10 +99,10 @@ export class ActivityComponent implements OnInit {
         forBegginers: [],
         forRegulars: [],
         forExperts: [],
-        distance: [],
-        altimetry: [],
-        averageSpeed: [],
-        minPeople: [],
+        distance: ["", [Validators.pattern(doubleRE)]],
+        altimetry: ["", [Validators.pattern(doubleRE)]],
+        averageSpeed: ["", [Validators.pattern(doubleRE)]],
+        minPeople: ["", [Validators.pattern(integerRE)]],
       });
   }
 

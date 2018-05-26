@@ -75,6 +75,11 @@
                   [(ngModel)]="act.referencePointStart"
                   class="form-control" 
                   autocomplete="off">
+                  <div *ngIf="formActivity.controls.referencePointStart.invalid && formActivity.controls.referencePointStart.touched">
+                    <span *ngIf="formActivity.controls.referencePointStart.errors.maxlength" class="form-control alert-danger">
+                        Número máximo de caracteres é 25
+                    </span>
+                  </div>    
               </div>
               <div class="form-group">
                 <label class="form-label">Ponto de referência final</label>
@@ -83,6 +88,11 @@
                   [(ngModel)]="act.referencePointEnd"
                   class="form-control" 
                   autocomplete="off">
+                  <div *ngIf="formActivity.controls.referencePointEnd.invalid && formActivity.controls.referencePointEnd.touched">
+                    <span *ngIf="formActivity.controls.referencePointEnd.errors.maxlength" class="form-control alert-danger">
+                        Número máximo de caracteres é 25
+                    </span>
+                  </div>    
               </div>
               <div class="form-group">
                 <label class="form-label">Tipo de rota</label>
@@ -91,6 +101,11 @@
                   [(ngModel)]="act.typeRoute"
                   class="form-control" 
                   autocomplete="off">
+                  <div *ngIf="formActivity.controls.typeRoute.invalid && formActivity.controls.typeRoute.touched">
+                    <span *ngIf="formActivity.controls.typeRoute.errors.maxlength" class="form-control alert-danger">
+                        Número máximo de caracteres é 25
+                    </span>
+                  </div>    
               </div>
               <div class="form-group">
                 <label class="form-label">Nome de rota</label>
@@ -99,6 +114,11 @@
                   [(ngModel)]="act.nameRoute"
                   class="form-control" 
                   autocomplete="off">
+                  <div *ngIf="formActivity.controls.nameRoute.invalid && formActivity.controls.nameRoute.touched">
+                    <span *ngIf="formActivity.controls.nameRoute.errors.maxlength" class="form-control alert-danger">
+                        Número máximo de caracteres é 25
+                    </span>
+                  </div>    
               </div>
               <div class="form-group">
                 <label class="form-label">Horário de início</label>
@@ -263,36 +283,56 @@
               </div>
               <div class="card-title">Detalhes</div>
               <div class="form-group">
-                  <label class="form-label">Distância</label>
-                  <input 
-                    formControlName="distance"
-                    [(ngModel)]="act.details.distance"
-                    class="form-control" 
-                    autocomplete="off">  
+                <label class="form-label">Distância</label>
+                <input 
+                  formControlName="distance"
+                  [(ngModel)]="act.details.distance"
+                  class="form-control" 
+                  autocomplete="off">  
+                  <div *ngIf="formActivity.controls.distance.invalid && formActivity.controls.distance.touched">
+                    <span *ngIf="formActivity.controls.distance.errors.pattern" class="form-control alert-danger">
+                      Informe um número válido. Você pode usar no máximo duas casas decimais
+                    </span>
+                  </div>  
               </div>
               <div class="form-group">
-                  <label class="form-label">Altimetria</label>
-                  <input 
-                    formControlName="altimetry"
-                    [(ngModel)]="act.details.altimetry"
-                    class="form-control" 
-                    autocomplete="off">  
+                <label class="form-label">Altimetria</label>
+                <input 
+                  formControlName="altimetry"
+                  [(ngModel)]="act.details.altimetry"
+                  class="form-control" 
+                  autocomplete="off">  
+                  <div *ngIf="formActivity.controls.altimetry.invalid && formActivity.controls.altimetry.touched">
+                    <span *ngIf="formActivity.controls.altimetry.errors.pattern" class="form-control alert-danger">
+                      Informe um número válido. Você pode usar no máximo duas casas decimais
+                    </span>
+                  </div>    
               </div>
               <div class="form-group">
-                  <label class="form-label">Velocidade média</label>
-                  <input 
-                    formControlName="averageSpeed"
-                    [(ngModel)]="act.details.averageSpeed"
-                    class="form-control" 
-                    autocomplete="off">  
+                <label class="form-label">Velocidade média</label>
+                <input 
+                  formControlName="averageSpeed"
+                  [(ngModel)]="act.details.averageSpeed"
+                  class="form-control" 
+                  autocomplete="off">  
+                  <div *ngIf="formActivity.controls.averageSpeed.invalid && formActivity.controls.averageSpeed.touched">
+                    <span *ngIf="formActivity.controls.averageSpeed.errors.pattern" class="form-control alert-danger">
+                        Informe um número válido. Você pode usar no máximo duas casas decimais
+                    </span>
+                  </div>    
               </div>
               <div class="form-group">
-                  <label class="form-label">Quantidade mínima de pessoas</label>
-                  <input 
-                    formControlName="minPeople"
-                    [(ngModel)]="act.details.minPeople"
-                    class="form-control" 
-                    autocomplete="off">  
+                <label class="form-label">Quantidade mínima de pessoas</label>
+                <input 
+                  formControlName="minPeople"
+                  [(ngModel)]="act.details.minPeople"
+                  class="form-control" 
+                  autocomplete="off">  
+                  <div *ngIf="formActivity.controls.minPeople.invalid && formActivity.controls.minPeople.touched">
+                    <span *ngIf="formActivity.controls.minPeople.errors.pattern" class="form-control alert-danger">
+                        Informe um número inteiro válido
+                    </span>
+                  </div>    
               </div>
               <div class="form-footer">
                 <button type="submit" class="btn btn-primary btn-block">Salvar</button>
