@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { StorageService } from '../storage.service';
 import { ActivitySimpleConsultDTO } from '../../model/activitysimpleconsult.dto';
+import { ActivityDomain } from '../../model/domain/activity.domain';
 
 @Injectable()
 export class ActivityService {
@@ -45,6 +46,10 @@ export class ActivityService {
 
   findById(id: String) : Observable<ActivityDTO>{    
     return this.http.get<ActivityDTO>(`${API_CONFIG.urlActivity}/${id}`);       
+  }
+
+  findByIdDetail(id: String) : Observable<ActivityDomain>{    
+    return this.http.get<ActivityDomain>(`${API_CONFIG.urlActivity}/detail/${id}`);       
   }
 
   findAllActOfUserLogged() : Observable<ActivitySimpleConsultDTO[]>{

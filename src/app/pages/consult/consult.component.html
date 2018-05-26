@@ -1,0 +1,78 @@
+    <div *ngIf="act" class="container">
+      <div class="row">
+        <div class="col col-login mx-auto">
+          <div class="row">
+              <h1>{{act.sport.name}}</h1>
+          </div>
+          <div class="row">
+              <span><b>ID da atividade:</b> {{act.id}}</span>    
+          </div>
+          <div class="row">
+              <span><b>Cidade de partida:</b> {{act.cityStart.name}}/{{act.cityStart.uf.sigla}}</span>    
+          </div>
+          <div class="row">
+              <span><b>Cidade de destino:</b> {{act.cityEnd.name}}/{{act.cityEnd.uf.sigla}}</span>    
+          </div>
+          <div class="row">
+              <span><b>Tipo de rota:</b> {{act.typeRoute}}</span>    
+          </div>
+          <div class="row">
+              <span><b>Nome da rota:</b> {{act.nameRoute}}</span>    
+          </div>
+          <div class="row">
+              <span><b>Responsável:</b> {{act.owner.name}} - {{act.owner.adress.city.name}}/{{act.owner.adress.city.uf.sigla}}</span>    
+          </div>
+          <div *ngIf="act.frequency === 'SPECIFIC_DATE'" class="row">
+              <span><b>Data:</b> {{act.date}}</span>    
+          </div>
+          <div *ngIf="act.frequency === 'REGULAR'" class="row">
+              <span><b>Dias da semana:</b>{{this.buildActivityWeekDays()}}</span>
+          </div>
+          <br>
+          <div class="row">
+              <h3>Tempo</h3>
+          </div>
+          <div class="row">
+              <b>Acontecerá na chuva? </b> <span *ngIf="act.happenOnRain">Sim</span> <span *ngIf="!act.happenOnRain">Não</span>       
+          </div>
+          <div class="row">
+              <b>Acontecerá no sol? </b> <span *ngIf="act.happenOnSun">Sim</span> <span *ngIf="!act.happenOnSun">Não</span>       
+          </div>
+          <div class="row">
+              <b>Acontecerá no frio? </b> <span *ngIf="act.happenOnCold">Sim</span> <span *ngIf="!act.happenOnCold">Não</span>       
+          </div>
+          <div class="row">
+              <b>Acontecerá no calor?</b> <span *ngIf="act.happenOnHeat">Sim</span> <span *ngIf="!act.happenOnHeat">Não</span>       
+          </div>
+          <br>
+          <div class="row">
+              <h3>Nível</h3>
+          </div>
+          <div class="row">
+              <b>Para iniciantes? </b> <span *ngIf="act.forBegginers">Sim</span> <span *ngIf="!act.forBegginers">Não</span>       
+          </div>
+          <div class="row">
+              <b>Para intermediários? </b> <span *ngIf="act.forRegulars">Sim</span> <span *ngIf="!act.forRegulars">Não</span>       
+          </div>
+          <div class="row">
+              <b>Para experientes? </b> <span *ngIf="act.forExperts">Sim</span> <span *ngIf="!act.forExperts">Não</span>       
+          </div>
+          <br>
+          <div class="row">
+              <h3>Detalhes</h3>
+          </div>
+          <div class="row">
+              <span><b>Distância:</b> {{act.distance}}</span>    
+          </div>
+          <div class="row">
+              <span><b>Altimetria:</b> {{act.altimetry}}</span>    
+          </div>
+          <div class="row">
+              <span><b>Velocidade média:</b> {{act.averageSpeed}}</span>    
+          </div>
+          <div class="row">
+              <span><b>Quantidade mínima de pessoas:</b> {{act.minPeople}}</span>    
+          </div>
+        </div>
+      </div>
+    </div>

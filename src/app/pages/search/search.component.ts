@@ -54,7 +54,7 @@ export class SearchComponent implements OnInit {
     );
   }
 
-  detailActivity(){
-    alert("Ainda não implementado!");
+  detailActivity(act: ActivitySimpleConsultDTO){    
+    this.router.navigate(['/consult/' + act.id]);    
   }
 }

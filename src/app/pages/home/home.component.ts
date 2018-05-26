@@ -60,5 +60,9 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/activity/' + act.id]);
   }
 
+  consultActivity(act: ActivitySimpleConsultDTO){
+    this.router.navigate(['/consult/' + act.id]);
+  }
+
 }
 

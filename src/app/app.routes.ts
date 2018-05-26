@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ActivityComponent } from './pages/activity/activity.component';
 import { SearchComponent } from './pages/search/search.component';
+import { ConsultComponent } from './pages/consult/consult.component';
 
 // Uma constante que recebe um array do tipo Routes
 const appRoutes: Routes = [
@@ -13,6 +14,8 @@ const appRoutes: Routes = [
     { path: 'activity', component: ActivityComponent },
     { path: 'activity/:id', component: ActivityComponent },
     { path: 'search', component: SearchComponent },
+    { path: 'consult', component: ConsultComponent },
+    { path: 'consult/:id', component: ConsultComponent },
     { path: '**', component: HomeComponent }
 ];
 

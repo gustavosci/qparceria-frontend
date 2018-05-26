@@ -26,6 +26,7 @@ import { ErrorInterceptorProvider } from './interceptor/error-interceptor';
 import { StorageService } from './services/storage.service';
 import { AuthInterceptorProvider } from './interceptor/auth-interceptor';
 import { SearchComponent } from './pages/search/search.component';
+import { ConsultComponent } from './pages/consult/consult.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SearchComponent } from './pages/search/search.component';
     FooterComponent,
     ActivityComponent,
     SearchComponent,
-    AppMaskDirective
+    AppMaskDirective,
+    ConsultComponent
   ],
   imports: [
     BrowserModule,
