@@ -40,6 +40,32 @@
                     <option value="3">Sapiranga</option>
                   </select>
                 </div>
+                <div class="form-group">
+                  <label class="form-label">Distância máxima (Km)</label>
+                  <input 
+                    formControlName="maxDistance"
+                    [(ngModel)]="maxDistance"
+                    class="form-control" 
+                    autocomplete="off">
+                  <div *ngIf="formSearch.controls.maxDistance.invalid && formSearch.controls.maxDistance.touched">
+                    <span *ngIf="formSearch.controls.maxDistance.errors.pattern" class="form-control alert-danger">
+                        Informe um número válido. Você pode usar no máximo duas casas decimais
+                    </span>
+                  </div>    
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Velocidade média máxima (Km/h)</label>
+                  <input 
+                    formControlName="maxAverage"
+                    [(ngModel)]="maxAverage"
+                    class="form-control" 
+                    autocomplete="off">
+                  <div *ngIf="formSearch.controls.maxAverage.invalid && formSearch.controls.maxAverage.touched">
+                    <span *ngIf="formSearch.controls.maxAverage.errors.pattern" class="form-control alert-danger">
+                       Informe um número válido. Você pode usar no máximo duas casas decimais
+                    </span>
+                  </div>  
+                </div>
                 <div class="form-footer">
                   <button type="submit" [disabled]="formSearch.invalid" class="btn btn-primary btn-block">Buscar</button>
                 </div>

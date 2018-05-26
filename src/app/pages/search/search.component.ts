@@ -16,6 +16,8 @@ export class SearchComponent implements OnInit {
   sportId: string = "1";
   ufStartId: string = "1";
   cityStartId: string = "1";
+  maxDistance: string = "100.00";
+  maxAverage: string = "60.00";
 
   acts: ActivitySimpleConsultDTO[] = [];
 
@@ -32,16 +34,20 @@ export class SearchComponent implements OnInit {
   }
 
   private setFormSearch(){
+    let doubleRE: string = "[0-9]*\\.?[0-9]?[0-9]?";
+    let integerRE: string = "[0-9]+";
     this.formSearch = this.formBuilder.group({
-        sportId: ['1'],
-        ufStartId: ['1'],
-        cityStartId: ['1']
+        sportId: [''],
+        ufStartId: [''],
+        cityStartId: [''],
+        maxDistance: ['', [Validators.pattern(doubleRE)]],
+        maxAverage: ['', [Validators.pattern(doubleRE)]]
     });
   }
 
   submit(event){
     this.actService
-    .search(this.sportId, this.cityStartId)
+    .search(this.sportId, this.cityStartId, this.maxDistance, this.maxAverage)
     .subscribe(
         acts => {
             this.acts = acts;

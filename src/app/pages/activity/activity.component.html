@@ -56,7 +56,7 @@
                 </select>
               </div>
               <div class="form-group">
-                <label class="form-label">Cidade de saída</label>
+                <label class="form-label">Cidade de destino</label>
                 <select 
                   formControlName="cityEndId"
                   [(ngModel)]="act.cityEndId"
@@ -283,7 +283,7 @@
               </div>
               <div class="card-title">Detalhes</div>
               <div class="form-group">
-                <label class="form-label">Distância</label>
+                <label class="form-label">Distância (Km)</label>
                 <input 
                   formControlName="distance"
                   [(ngModel)]="act.details.distance"
@@ -296,7 +296,7 @@
                   </div>  
               </div>
               <div class="form-group">
-                <label class="form-label">Altimetria</label>
+                <label class="form-label">Altimetria (m)</label>
                 <input 
                   formControlName="altimetry"
                   [(ngModel)]="act.details.altimetry"
@@ -309,7 +309,7 @@
                   </div>    
               </div>
               <div class="form-group">
-                <label class="form-label">Velocidade média</label>
+                <label class="form-label">Velocidade média (Km/h)</label>
                 <input 
                   formControlName="averageSpeed"
                   [(ngModel)]="act.details.averageSpeed"

@@ -56,9 +56,12 @@ export class ActivityService {
     return this.http.get<ActivitySimpleConsultDTO[]>(`${API_CONFIG.urlActivity}/my`);    
   }
 
-  search(sportid: String, citystartid: string) : Observable<ActivitySimpleConsultDTO[]>{    
-    return this.http.get<ActivitySimpleConsultDTO[]>(
-      `${API_CONFIG.urlActivity}/search?sport=${sportid}&citystart=${citystartid}`);
+  search(sportid: String, 
+        citystartid: string,
+        maxDistance: string,
+        maxAverage: string) : Observable<ActivitySimpleConsultDTO[]>{    
+      return this.http.get<ActivitySimpleConsultDTO[]>(
+      `${API_CONFIG.urlActivity}/search?sport=${sportid}&citystart=${citystartid}&maxdistance=${maxDistance}&maxaverage=${maxAverage}`);
   }
 
 }

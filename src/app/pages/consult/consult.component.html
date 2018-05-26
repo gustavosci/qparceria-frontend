@@ -8,10 +8,14 @@
               <span><b>ID da atividade:</b> {{act.id}}</span>    
           </div>
           <div class="row">
-              <span><b>Cidade de partida:</b> {{act.cityStart.name}}/{{act.cityStart.uf.sigla}}</span>    
+              <span><b>Partida:</b> {{act.cityStart.name}}/{{act.cityStart.uf.sigla}}
+                <span *ngIf="act.referencePointStart"> - {{act.referencePointStart}}</span>
+              </span>    
           </div>
           <div class="row">
-              <span><b>Cidade de destino:</b> {{act.cityEnd.name}}/{{act.cityEnd.uf.sigla}}</span>    
+              <span><b>Destino:</b> {{act.cityEnd.name}}/{{act.cityEnd.uf.sigla}}
+                <span *ngIf="act.referencePointEnd"> - {{act.referencePointEnd}}</span>  
+              </span>    
           </div>
           <div class="row">
               <span><b>Tipo de rota:</b> {{act.typeRoute}}</span>    
@@ -62,13 +66,13 @@
               <h3>Detalhes</h3>
           </div>
           <div class="row">
-              <span><b>Distância:</b> {{act.distance}}</span>    
+            <b>Distância: </b><span *ngIf="act.distance"> {{act.distance}} Km</span>    
           </div>
           <div class="row">
-              <span><b>Altimetria:</b> {{act.altimetry}}</span>    
+            <b>Altimetria: </b><span *ngIf="act.altimetry"> {{act.altimetry}} m</span>    
           </div>
           <div class="row">
-              <span><b>Velocidade média:</b> {{act.averageSpeed}}</span>    
+            <b>Velocidade média: </b><span *ngIf="act.averageSpeed"> {{act.averageSpeed}} Km/h</span>    
           </div>
           <div class="row">
               <span><b>Quantidade mínima de pessoas:</b> {{act.minPeople}}</span>    
