@@ -6,6 +6,9 @@ import { UserDTO } from '../../model/user.dto';
 import { StorageService } from '../../services/storage.service';
 import { LocalUser } from '../../model/local-user';
 import { STORAGE_KEYS } from '../../config/storage-keys.config';
+import { UFService } from '../../services/domain/uf.service';
+import { UFDTO } from '../../model/uf.dto';
+import { CityDTO } from '../../model/city.dto';
 
 @Component({
   moduleId: module.id,
@@ -44,16 +47,40 @@ export class CadastroComponent implements OnInit {
   formCadastro: FormGroup;
   newUser: boolean;
 
+  ufs: UFDTO[];
+  cities: CityDTO[];
+
   constructor(public userService: UserService, 
               public storage: StorageService,
               public formBuilder: FormBuilder,
               public route: ActivatedRoute,
-              public router: Router){
+              public router: Router,
+              public ufService: UFService) {   
   }
 
   ngOnInit() {   
+    this.getAllUfs();
     this.loadUserLogged();
     this.loadFormCadastro();    
+  }
+
+  private getAllUfs(){
+    this.ufService.getUFs()
+      .subscribe(ufs => {
+        this.ufs = ufs;
+        this.user.ufId = ufs[0].id;
+        this.updateCities(this.user.ufId, true);
+      })
+  }
+
+  private updateCities(ufId: string, updCity: boolean){
+    this.ufService.getCitiesByUF(ufId)
+      .subscribe(cities => {
+        this.cities = cities;
+        if(updCity){
+          this.user.cityId = cities[0].id;
+        }        
+      })    
   }
 
   private loadUserLogged(){
@@ -96,8 +123,12 @@ export class CadastroComponent implements OnInit {
     .findByUsername(username)
     .subscribe(
         user => {
+            this.updateCities(user.ufId, false);
+
+            // ver porque nao atualiza a combo
+            console.log("user: " + user.cityId);
             this.user = user;
-            this.newUser = false;
+            this.newUser = false;            
         },
         erro => { 
            if(erro.status === 403){

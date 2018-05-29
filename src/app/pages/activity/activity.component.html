@@ -11,12 +11,8 @@
                   formControlName="sportId"
                   [(ngModel)]="act.sportId"
                   class="form-control" 
-                  autocomplete="off"
-                  value="1">
-                  <option value="1">Corrida</option>
-                  <option value="2">Ciclismo</option>
-                  <option value="3">Caminhada</option>
-                </select>
+                  autocomplete="off">
+                  <option *ngFor="let sport of sports" value="{{sport.id}}">{{sport.name}}</option>                </select>
               </div>    
               <div class="form-group">
                 <label class="form-label">UF saída</label>
@@ -25,9 +21,8 @@
                   [(ngModel)]="act.ufStartId"
                   class="form-control" 
                   autocomplete="off"
-                  value="1">
-                  <option value="1">RS</option>
-                  <option value="2">SP</option>
+                  (change)="this.updateCitiesStart(this.act.ufStartId)">
+                  <option *ngFor="let ufStart of ufs" value="{{ufStart.id}}">{{ufStart.sigla}}</option>
                 </select>
               </div>
               <div class="form-group">
@@ -36,11 +31,8 @@
                   formControlName="cityStartId"
                   [(ngModel)]="act.cityStartId"
                   class="form-control" 
-                  autocomplete="off"
-                  value="1">
-                  <option value="1">Porto Alegre</option>
-                  <option value="2">Campinas</option>
-                  <option value="3">Sapiranga</option>
+                  autocomplete="off">
+                  <option *ngFor="let cityStart of citiesStart" value="{{cityStart.id}}">{{cityStart.name}}</option>
                 </select>
               </div>
               <div class="form-group">
@@ -50,9 +42,8 @@
                   [(ngModel)]="act.ufEndId"
                   class="form-control" 
                   autocomplete="off"
-                  value="1">
-                  <option value="1">RS</option>
-                  <option value="2">SP</option>
+                  (change)="this.updateCitiesEnd(this.act.ufEndId)">
+                  <option *ngFor="let ufEnd of ufs" value="{{ufEnd.id}}">{{ufEnd.sigla}}</option>
                 </select>
               </div>
               <div class="form-group">
@@ -61,11 +52,8 @@
                   formControlName="cityEndId"
                   [(ngModel)]="act.cityEndId"
                   class="form-control" 
-                  autocomplete="off"
-                  value="1">
-                  <option value="1">Porto Alegre</option>
-                  <option value="2">Campinas</option>
-                  <option value="3">Sapiranga</option>
+                  autocomplete="off">
+                  <option *ngFor="let cityEnd of citiesEnd" value="{{cityEnd.id}}">{{cityEnd.name}}</option>
                 </select>
               </div>
               <div class="form-group">

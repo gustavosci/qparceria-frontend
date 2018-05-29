@@ -149,9 +149,8 @@
                   [(ngModel)]="user.ufId"
                   class="form-control" 
                   autocomplete="off"
-                  value="1">
-                  <option value="1">RS</option>
-                  <option value="2">SP</option>
+                  (change)="this.updateCities(this.user.ufId, true)">
+                  <option *ngFor="let uf of ufs" value="{{uf.id}}">{{uf.sigla}}</option>
                 </select>
               </div>
               <div class="form-group">
@@ -160,12 +159,8 @@
                   formControlName="cityId"
                   [(ngModel)]="user.cityId"
                   class="form-control" 
-                  autocomplete="off"
-                  value="1">
-                  <option value="1">Porto Alegre</option>
-                  <option value="2">Campinas</option>
-                  <option value="3">Sapiranga</option>
-                </select>
+                  autocomplete="off">
+                  <option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</option>                </select>
               </div>
               <div class="card-title">Esportes que curto</div>
               <div class="form-group">

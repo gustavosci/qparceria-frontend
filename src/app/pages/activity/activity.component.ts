@@ -6,6 +6,11 @@ import { StorageService } from '../../services/storage.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { LocalUser } from '../../model/local-user';
 import { STORAGE_KEYS } from '../../config/storage-keys.config';
+import { SportService } from '../../services/domain/sport.service';
+import { SportDTO } from '../../model/sport.dto';
+import { UFService } from '../../services/domain/uf.service';
+import { UFDTO } from '../../model/uf.dto';
+import { CityDTO } from '../../model/city.dto';
 
 @Component({
   moduleId: module.id,
@@ -57,16 +62,61 @@ export class ActivityComponent implements OnInit {
   newActivity: boolean;
   maskDate: string; // criado para indicar dinamicante a mascará do campo de data. Fixando no HTML, não estava permitindo desabilitar o campo  
 
+  ufs: UFDTO[];
+  citiesStart: CityDTO[];
+  citiesEnd: CityDTO[];
+  sports: SportDTO[];
+
   constructor(public actService: ActivityService, 
               public storage: StorageService,
               public formBuilder: FormBuilder,
               public route: ActivatedRoute,
-              public router: Router) { }
+              public router: Router,
+              public ufService: UFService,
+              public sportService: SportService) {   
+ }
 
   ngOnInit() {
+    this.getAllSports();
+    this.getAllUfs();
     this.newActivity = true;
     this.loadFormActivity();    
     this.loadActivityUpdate();    
+  }
+
+  private getAllSports(){
+    this.sportService.getSports()
+    .subscribe(sports => {
+      this.sports = sports;
+      this.act.sportId = sports[0].id;
+    })
+  }
+
+  private getAllUfs(){
+    this.ufService.getUFs()
+      .subscribe(ufs => {
+        this.ufs = ufs;
+        this.act.ufStartId = ufs[0].id;
+        this.updateCitiesStart(this.act.ufStartId);
+        this.act.ufEndId = ufs[0].id;
+        this.updateCitiesEnd(this.act.ufEndId);
+      })
+  }
+
+  private updateCitiesStart(ufId: string){
+    this.ufService.getCitiesByUF(ufId)
+      .subscribe(cities => {
+        this.citiesStart = cities;
+        this.act.cityStartId = cities[0].id;
+      })    
+  }
+
+  private updateCitiesEnd(ufId: string){
+    this.ufService.getCitiesByUF(ufId)
+      .subscribe(cities => {
+        this.citiesEnd = cities;
+        this.act.cityEndId = cities[0].id;
+      })    
   }
 
   private loadFormActivity(){
@@ -126,6 +176,8 @@ export class ActivityComponent implements OnInit {
               alert("Não é possível alterar uma atividade que você não é dono!");
               this.router.navigate(['']);
             } else {
+              this.updateCitiesStart(act.ufStartId);
+              this.updateCitiesEnd(act.ufEndId);
               this.act = act;
               this.newActivity = false;  
               this.handleChangeFrequency();
