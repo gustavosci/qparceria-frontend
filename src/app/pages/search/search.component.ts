@@ -4,10 +4,13 @@ import { ActivitySimpleConsultDTO } from '../../model/activitysimpleconsult.dto'
 import { PanelActivityComponent } from '../../global/panelactivity/panelactivity.component';
 import { SimpleListActComponent } from '../../global/simplelistact/simplelistact.component';
 import { ActivityService } from '../../services/domain/activity.service';
+import { UFService } from '../../services/domain/uf.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { StorageService } from '../../services/storage.service';
 import { LocalUser } from '../../model/local-user';
 import { STORAGE_KEYS } from '../../config/storage-keys.config';
+import { UFDTO } from '../../model/uf.dto';
+import { CityDTO } from '../../model/city.dto';
 
 @Component({
   selector: 'app-search',
@@ -22,6 +25,8 @@ export class SearchComponent implements OnInit {
   maxDistance: string = "100.00";
   maxAverage: string = "60.00";
 
+  ufs: UFDTO[];
+  cities: CityDTO[];
   acts: ActivitySimpleConsultDTO[] = [];
 
   formSearch: FormGroup;
@@ -30,12 +35,31 @@ export class SearchComponent implements OnInit {
               public route: ActivatedRoute,
               public router: Router,
               public actService: ActivityService,
-              public storage: StorageService) {   
+              public storage: StorageService,
+              public ufService: UFService) {   
   }
 
   ngOnInit() {
+    this.getAllUfs();
     this.getUserLoggedData();
     this.setFormSearch();
+  }
+
+  private getAllUfs(){
+    this.ufService.getUFs()
+      .subscribe(ufs => {
+        this.ufs = ufs;
+        this.ufStartId = ufs[0].id;
+        this.updateCities(this.ufStartId);
+      })
+  }
+
+  private updateCities(ufId: string){
+    this.ufService.getCitiesByUF(ufId)
+      .subscribe(cities => {
+        this.cities = cities;
+        this.cityStartId = cities[0].id;
+      })    
   }
 
   private getUserLoggedData(){
