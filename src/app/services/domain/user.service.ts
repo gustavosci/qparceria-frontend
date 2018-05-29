@@ -21,7 +21,7 @@ export class UserService {
 
     private insert(user: UserDTO){
         return this.http.post(
-            API_CONFIG.urlUser,
+            `${API_CONFIG.urlBase}/users`,
             user,
             {
                 observe: 'response',
@@ -32,7 +32,7 @@ export class UserService {
 
     private update(user: UserDTO){
         return this.http.put(
-            `${API_CONFIG.urlUser}/${user.id}`,
+            `${API_CONFIG.urlBase}/users/${user.id}`,
             user,
             {
                 observe: 'response',
@@ -42,7 +42,7 @@ export class UserService {
     }
 
   findByUsername(username: String) : Observable<UserDTO>{    
-    return this.http.get<UserDTO>(`${API_CONFIG.urlUser}/username?value=${username}`);       
+    return this.http.get<UserDTO>(`${API_CONFIG.urlBase}/users/username?value=${username}`);       
   }
     
 }

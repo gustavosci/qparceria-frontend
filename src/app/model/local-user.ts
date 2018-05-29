@@ -3,4 +3,6 @@ export interface LocalUser {
     username: string;
     id: string;
     name: string;
+    cityId: string;
+    ufId: string;
 }

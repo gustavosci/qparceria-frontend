@@ -19,7 +19,7 @@ export class AuthService {
 
   public authenticate(creds: CredentialsDTO){
     return this.http.post(
-      `${API_CONFIG.urlAuth}`, 
+      `${API_CONFIG.urlBase}/login`, 
       creds, 
       {
         observe: 'response',
@@ -29,7 +29,7 @@ export class AuthService {
 
   public refreshToken(){
     return this.http.post(
-      `${API_CONFIG.urlRefreshToken}`, 
+      `${API_CONFIG.urlBase}/auth/refresh_token`, 
       {}, 
       {
         observe: 'response',
@@ -43,7 +43,9 @@ export class AuthService {
       token: tok,
       username: this.jwtHelper.decodeToken(tok).sub,
       id: "",
-      name: ""
+      name: "",
+      cityId: "",
+      ufId: ""
     };
     this.storage.setLocalUser(userSS); // Já será localuser neste ponto, pois é necessário para comunicação com userservice
     this.userService
@@ -52,6 +54,8 @@ export class AuthService {
         user => {
             userSS.id = user.id;
             userSS.name = user.name;
+            userSS.cityId = user.cityId;
+            userSS.ufId = user.ufId;
             this.storage.setLocalUser(userSS);  
         },
         erro => { 

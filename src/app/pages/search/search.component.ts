@@ -5,6 +5,9 @@ import { PanelActivityComponent } from '../../global/panelactivity/panelactivity
 import { SimpleListActComponent } from '../../global/simplelistact/simplelistact.component';
 import { ActivityService } from '../../services/domain/activity.service';
 import { ActivatedRoute, Router } from "@angular/router";
+import { StorageService } from '../../services/storage.service';
+import { LocalUser } from '../../model/local-user';
+import { STORAGE_KEYS } from '../../config/storage-keys.config';
 
 @Component({
   selector: 'app-search',
@@ -26,11 +29,21 @@ export class SearchComponent implements OnInit {
   constructor(public formBuilder: FormBuilder,
               public route: ActivatedRoute,
               public router: Router,
-              public actService: ActivityService) {   
+              public actService: ActivityService,
+              public storage: StorageService) {   
   }
 
   ngOnInit() {
+    this.getUserLoggedData();
     this.setFormSearch();
+  }
+
+  private getUserLoggedData(){
+    let userLogged: LocalUser = this.storage.getLocalUser();
+    if(userLogged){
+      this.cityStartId = userLogged.cityId;
+      this.ufStartId = userLogged.ufId;
+    }
   }
 
   private setFormSearch(){

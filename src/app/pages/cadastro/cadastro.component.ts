@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { UserService } from "../../services/domain/user.service";
-import { StorageService } from '../../services/storage.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserDTO } from '../../model/user.dto';
+import { StorageService } from '../../services/storage.service';
 import { LocalUser } from '../../model/local-user';
 import { STORAGE_KEYS } from '../../config/storage-keys.config';
 
