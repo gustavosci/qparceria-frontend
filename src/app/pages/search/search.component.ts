@@ -54,7 +54,6 @@ export class SearchComponent implements OnInit {
     this.sportService.getSports()
     .subscribe(sports => {
       this.sports = sports;
-      this.sportId = sports[0].id;
     })
   }
 
@@ -62,24 +61,26 @@ export class SearchComponent implements OnInit {
     this.ufService.getUFs()
       .subscribe(ufs => {
         this.ufs = ufs;
-        this.ufStartId = ufs[0].id;
-        this.updateCities(this.ufStartId);
+        this.updateCities(this.ufStartId, false);
       })
   }
 
-  private updateCities(ufId: string){
+  private updateCities(ufId: string, updCity: boolean){
     this.ufService.getCitiesByUF(ufId)
       .subscribe(cities => {
         this.cities = cities;
-        this.cityStartId = cities[0].id;
+        if(updCity){
+          this.cityStartId = this.cities[0].id;
+        }
       })    
   }
 
   private getUserLoggedData(){
     let userLogged: LocalUser = this.storage.getLocalUser();
     if(userLogged){
-      this.cityStartId = userLogged.cityId;
+      this.updateCities(userLogged.ufId, false);
       this.ufStartId = userLogged.ufId;
+      this.cityStartId = userLogged.cityId;      
     }
   }
 

@@ -21,7 +21,7 @@
                   [(ngModel)]="act.ufStartId"
                   class="form-control" 
                   autocomplete="off"
-                  (change)="this.updateCitiesStart(this.act.ufStartId)">
+                  (change)="this.updateCitiesStart(this.act.ufStartId, true)">
                   <option *ngFor="let ufStart of ufs" value="{{ufStart.id}}">{{ufStart.sigla}}</option>
                 </select>
               </div>
@@ -42,7 +42,7 @@
                   [(ngModel)]="act.ufEndId"
                   class="form-control" 
                   autocomplete="off"
-                  (change)="this.updateCitiesEnd(this.act.ufEndId)">
+                  (change)="this.updateCitiesEnd(this.act.ufEndId, true)">
                   <option *ngFor="let ufEnd of ufs" value="{{ufEnd.id}}">{{ufEnd.sigla}}</option>
                 </select>
               </div>

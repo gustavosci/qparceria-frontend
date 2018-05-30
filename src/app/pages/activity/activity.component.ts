@@ -96,26 +96,29 @@ export class ActivityComponent implements OnInit {
     this.ufService.getUFs()
       .subscribe(ufs => {
         this.ufs = ufs;
-        this.act.ufStartId = ufs[0].id;
-        this.updateCitiesStart(this.act.ufStartId);
-        this.act.ufEndId = ufs[0].id;
-        this.updateCitiesEnd(this.act.ufEndId);
+        this.updateCitiesStart(this.act.ufStartId, false);
+        this.updateCitiesEnd(this.act.ufEndId, false);
       })
   }
 
-  private updateCitiesStart(ufId: string){
+  private updateCitiesStart(ufId: string, updCity: boolean){
     this.ufService.getCitiesByUF(ufId)
       .subscribe(cities => {
         this.citiesStart = cities;
-        this.act.cityStartId = cities[0].id;
+        if(updCity){
+          this.act.cityStartId = this.citiesStart[0].id;
+        }
       })    
   }
 
-  private updateCitiesEnd(ufId: string){
+  private updateCitiesEnd(ufId: string, updCity: boolean){
     this.ufService.getCitiesByUF(ufId)
       .subscribe(cities => {
         this.citiesEnd = cities;
-        this.act.cityEndId = cities[0].id;
+        if(updCity){
+          this.act.cityEndId = this.citiesEnd[0].id;
+        }
+
       })    
   }
 
@@ -176,8 +179,8 @@ export class ActivityComponent implements OnInit {
               alert("Não é possível alterar uma atividade que você não é dono!");
               this.router.navigate(['']);
             } else {
-              this.updateCitiesStart(act.ufStartId);
-              this.updateCitiesEnd(act.ufEndId);
+              this.updateCitiesStart(act.ufStartId, false);
+              this.updateCitiesEnd(act.ufEndId, false);
               this.act = act;
               this.newActivity = false;  
               this.handleChangeFrequency();

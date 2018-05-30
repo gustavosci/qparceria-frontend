@@ -22,7 +22,7 @@
                     [(ngModel)]="ufStartId"
                     class="form-control" 
                     autocomplete="off"
-                    (change)="this.updateCities(this.ufStartId)">
+                    (change)="this.updateCities(this.ufStartId, true)">
                     <option *ngFor="let uf of ufs" value="{{uf.id}}">{{uf.sigla}}</option>
                   </select>
                 </div>

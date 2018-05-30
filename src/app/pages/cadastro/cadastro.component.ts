@@ -68,8 +68,7 @@ export class CadastroComponent implements OnInit {
     this.ufService.getUFs()
       .subscribe(ufs => {
         this.ufs = ufs;
-        this.user.ufId = ufs[0].id;
-        this.updateCities(this.user.ufId, true);
+        this.updateCities(this.user.ufId, false);
       })
   }
 
@@ -78,8 +77,8 @@ export class CadastroComponent implements OnInit {
       .subscribe(cities => {
         this.cities = cities;
         if(updCity){
-          this.user.cityId = cities[0].id;
-        }        
+          this.user.cityId = this.cities[0].id;
+        }
       })    
   }
 
@@ -89,6 +88,23 @@ export class CadastroComponent implements OnInit {
     if(userLogged && userLogged.username){
       this.setUserByUsername(userLogged.username);
     }
+  }
+
+  private setUserByUsername(username: string){        
+    this.userService
+    .findByUsername(username)
+    .subscribe(
+        user => {
+            this.updateCities(user.ufId, false);
+            this.user = user;
+            this.newUser = false;            
+        },
+        erro => { 
+           if(erro.status === 403){
+            this.router.navigate(['/login']);
+           }            
+        }
+    );
   }
 
   private loadFormCadastro(){
@@ -116,26 +132,6 @@ export class CadastroComponent implements OnInit {
         walk: [],
         cyclism: [],
     });
-  }
-
-  private setUserByUsername(username: string){        
-    this.userService
-    .findByUsername(username)
-    .subscribe(
-        user => {
-            this.updateCities(user.ufId, false);
-
-            // ver porque nao atualiza a combo
-            console.log("user: " + user.cityId);
-            this.user = user;
-            this.newUser = false;            
-        },
-        erro => { 
-           if(erro.status === 403){
-            this.router.navigate(['/login']);
-           }            
-        }
-    );
   }
 
   submit(event) {        
