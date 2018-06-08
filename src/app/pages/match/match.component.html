@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <app-panelactivity *ngFor="let match of matches" title="{{match.act.nameSport}}" class="col-md-3">
+      <app-simplelistact sport={{match.act.nameSport}}
+                        citystart={{match.act.nameCityStart}}
+                        ufstart={{match.act.siglaUFStart}}
+                        cityend={{match.act.nameCityEnd}}
+                        ufend={{match.act.siglaUFEnd}}
+                        timestart={{match.act.timeStart}} 
+                        frequency={{match.act.describeFrequency}}
+                        response={{match.act.nameOwner}}>
+      </app-simplelistact>
+      <button (click)="consultActivity(match.act.id)" class="btn btn-primary btn-block">Consultar</button>
+    </app-panelactivity>
+  </div>     
+</div>

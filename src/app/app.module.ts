@@ -22,6 +22,7 @@ import { AuthService } from './services/auth.service';
 import { UserService } from './services/domain/user.service';
 import { ActivityService } from './services/domain/activity.service';
 import { UFService } from './services/domain/uf.service';
+import { MatchService } from './services/domain/match.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorInterceptorProvider } from './interceptor/error-interceptor';
 import { StorageService } from './services/storage.service';
@@ -29,6 +30,7 @@ import { AuthInterceptorProvider } from './interceptor/auth-interceptor';
 import { SearchComponent } from './pages/search/search.component';
 import { ConsultComponent } from './pages/consult/consult.component';
 import { SportService } from './services/domain/sport.service';
+import { MatchComponent } from './pages/match/match.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { SportService } from './services/domain/sport.service';
     ActivityComponent,
     SearchComponent,
     AppMaskDirective,
-    ConsultComponent
+    ConsultComponent,
+    MatchComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ import { SportService } from './services/domain/sport.service';
     ErrorInterceptorProvider,
     StorageService,
     UFService,
-    SportService    
+    SportService,
+    MatchService
   ],
   bootstrap: [AppComponent]
 })
