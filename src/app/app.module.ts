@@ -30,7 +30,8 @@ import { AuthInterceptorProvider } from './interceptor/auth-interceptor';
 import { SearchComponent } from './pages/search/search.component';
 import { ConsultComponent } from './pages/consult/consult.component';
 import { SportService } from './services/domain/sport.service';
-import { MatchComponent } from './pages/match/match.component';
+import { MatchReceivedComponent } from './pages/matchreceived/matchreceived.component';
+import { MatchProducedComponent } from './pages/matchproduced/matchproduced.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { MatchComponent } from './pages/match/match.component';
     SearchComponent,
     AppMaskDirective,
     ConsultComponent,
-    MatchComponent
+    MatchReceivedComponent,
+    MatchProducedComponent
   ],
   imports: [
     BrowserModule,
