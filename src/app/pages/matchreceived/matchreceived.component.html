@@ -10,7 +10,9 @@
                         frequency={{match.act.describeFrequency}}
                         response={{match.act.nameOwner}}>
       </app-simplelistact>
-      <button (click)="consultActivity(match.act.id)" class="btn btn-primary btn-block">Consultar</button>
+      <button (click)="consultActivity(match.act.id)" class="btn btn-primary btn-block">Consultar atividade</button>
+      <button (click)="updateActivity(match.act.id)" class="btn btn-primary btn-block">Alterar atividade</button>
+      <button (click)="consultMatchers(match.act.id)" class="btn btn-primary btn-block">Matchers</button>
     </app-panelactivity>
   </div>     
 </div>

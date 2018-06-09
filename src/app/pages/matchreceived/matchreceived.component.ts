@@ -40,4 +40,12 @@ export class MatchReceivedComponent implements OnInit {
     this.router.navigate(['/consult/' + act]);
   }
 
+  updateActivity(act: string){
+    this.router.navigate(['/activity/' + act]);
+  }
+
+  consultMatchers(act: string){
+    this.router.navigate(['/matchers/' + act]);
+  }
+
 }

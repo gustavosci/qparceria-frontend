@@ -1,0 +1,38 @@
+<div *ngIf="match" class="container">
+  <div class="row">
+    <div class="col col-login mx-auto">
+      <div class="row">
+          <h1>Atividade</h1>
+      </div>
+      <app-simplelistact sport={{match.act.nameSport}}
+                        citystart={{match.act.nameCityStart}}
+                        ufstart={{match.act.siglaUFStart}}
+                        cityend={{match.act.nameCityEnd}}
+                        ufend={{match.act.siglaUFEnd}}
+                        timestart={{match.act.timeStart}} 
+                        frequency={{match.act.describeFrequency}}
+                        response={{match.act.nameOwner}}>
+      </app-simplelistact>
+      <div class="row">
+          <br>
+      </div>
+      <div class="row">
+          <h1>Matchers</h1>
+      </div>
+      <div *ngFor="let matcher of match.matchers">
+        <div class="row">
+            <span><b>Nome: </b> {{matcher.name}}</span>
+        </div>
+        <div class="row">
+            <span><b>Cidade: </b> {{matcher.city.name}}/{{matcher.uf.sigla}}</span> 
+        </div>
+        <div class="row">
+            <span><b>Telefone: </b> {{matcher.phone}}</span> 
+        </div>
+        <div class="row">
+            <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

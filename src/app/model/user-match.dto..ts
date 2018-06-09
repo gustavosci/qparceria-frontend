@@ -6,4 +6,5 @@ export interface UserMatchDTO {
 	name: string;
 	city: CityDTO;
 	uf: UFDTO;
+	phone: string;
 }

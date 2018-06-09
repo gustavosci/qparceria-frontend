@@ -32,6 +32,7 @@ import { ConsultComponent } from './pages/consult/consult.component';
 import { SportService } from './services/domain/sport.service';
 import { MatchReceivedComponent } from './pages/matchreceived/matchreceived.component';
 import { MatchProducedComponent } from './pages/matchproduced/matchproduced.component';
+import { MatchersComponent } from './pages/matchers/matchers.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { MatchProducedComponent } from './pages/matchproduced/matchproduced.comp
     AppMaskDirective,
     ConsultComponent,
     MatchReceivedComponent,
-    MatchProducedComponent
+    MatchProducedComponent,
+    MatchersComponent
   ],
   imports: [
     BrowserModule,

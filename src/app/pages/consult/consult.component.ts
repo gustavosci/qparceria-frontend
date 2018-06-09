@@ -84,5 +84,9 @@ export class ConsultComponent implements OnInit {
     return str;
   }
 
+  consultMatchers(act: string){
+    this.router.navigate(['/matchers/' + act]);
+  }
+
 }
 

@@ -39,4 +39,9 @@ export class MatchProducedComponent implements OnInit {
   consultActivity(act: string){
     this.router.navigate(['/consult/' + act]);
   }
+
+  consultMatchers(act: string){
+    this.router.navigate(['/matchers/' + act]);
+  }
+
 }
