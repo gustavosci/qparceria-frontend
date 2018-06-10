@@ -25,12 +25,14 @@ export class SearchComponent implements OnInit {
   ufStartId: string = "1";
   cityStartId: string = "1";
   maxDistance: string = "100.00";
-  maxAverage: string = "60.00";
+  maxAverage: string = "100.00";
+  includesOwn: boolean = false;
 
   ufs: UFDTO[];
   cities: CityDTO[];
   acts: ActivitySimpleConsultDTO[] = [];
   sports: SportDTO[];
+  userLogged: LocalUser;
 
   formSearch: FormGroup;
 
@@ -76,11 +78,11 @@ export class SearchComponent implements OnInit {
   }
 
   private getUserLoggedData(){
-    let userLogged: LocalUser = this.storage.getLocalUser();
-    if(userLogged){
-      this.updateCities(userLogged.ufId, false);
-      this.ufStartId = userLogged.ufId;
-      this.cityStartId = userLogged.cityId;      
+    this.userLogged = this.storage.getLocalUser();
+    if(this.userLogged){
+      this.updateCities(this.userLogged.ufId, false);
+      this.ufStartId = this.userLogged.ufId;
+      this.cityStartId = this.userLogged.cityId;      
     }
   }
 
@@ -92,13 +94,14 @@ export class SearchComponent implements OnInit {
         ufStartId: [''],
         cityStartId: [''],
         maxDistance: ['', [Validators.pattern(doubleRE)]],
-        maxAverage: ['', [Validators.pattern(doubleRE)]]
+        maxAverage: ['', [Validators.pattern(doubleRE)]],
+        includesOwn: ['']
     });
   }
 
   submit(event){
     this.actService
-    .search(this.sportId, this.cityStartId, this.maxDistance, this.maxAverage)
+    .search(this.sportId, this.cityStartId, this.maxDistance, this.maxAverage, this.includesOwn)
     .subscribe(
         acts => {
             this.acts = acts;
@@ -111,7 +114,12 @@ export class SearchComponent implements OnInit {
     );
   }
 
-  detailActivity(act: ActivitySimpleConsultDTO){    
-    this.router.navigate(['/consult/' + act.id]);    
+  detailActivity(act: string){    
+    this.router.navigate(['/consult/' + act]);    
   }
+
+  match(act: string){    
+    alert("nao impl");
+  }
+
 }

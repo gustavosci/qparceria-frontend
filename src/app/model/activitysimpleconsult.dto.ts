@@ -5,7 +5,7 @@ export interface ActivitySimpleConsultDTO {
 	nameCityStart: string;
 	siglaUFEnd: string;
 	nameCityEnd: string;
-	nameOwner: string;
 	timeStart: string;
-	describeFrequency: string;
+	idOwner: string;
+	nameOwner: string;
 }
