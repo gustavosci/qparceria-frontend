@@ -82,17 +82,24 @@
             <h3 *ngIf="!this.acts[0]">Nenhuma atividade a ser exibida :(</h3>
             <div *ngIf="this.acts">
               <app-panelactivity *ngFor="let act of acts" title="{{act.nameSport}}" class="col-md-3">
-                <app-simplelistact sport={{act.nameSport}}
-                                  citystart={{act.nameCityStart}}
-                                  ufstart={{act.siglaUFStart}}
-                                  cityend={{act.nameCityEnd}}
-                                  ufend={{act.siglaUFEnd}}
-                                  timestart={{act.timeStart}}
-                                  frequency={{act.describeFrequency}}
-                                  response={{act.nameOwner}}>
+                <app-simplelistact sport={{act.act.nameSport}}
+                                  citystart={{act.act.nameCityStart}}
+                                  ufstart={{act.act.siglaUFStart}}
+                                  cityend={{act.act.nameCityEnd}}
+                                  ufend={{act.act.siglaUFEnd}}
+                                  timestart={{act.act.timeStart}}
+                                  frequency={{act.act.describeFrequency}}
+                                  response={{act.act.nameOwner}}>
                 </app-simplelistact>
-                <button (click)="detailActivity(act.id)" class="btn btn-primary btn-block">Detalhes</button>  
-                <button (click)="match(act.id)" class="btn btn-primary btn-block" [disabled]="act.idOwner === userLogged.id">Match</button>  
+                <button (click)="detailActivity(act.act.id)" class="btn btn-primary btn-block">Detalhes</button>  
+                <button *ngIf="!act.isUserLoggedMatcher"
+                  (click)="match(act)" 
+                  class="btn btn-primary btn-block" 
+                  [disabled]="act.act.idOwner === userLogged.id">Match</button>  
+                <button *ngIf="act.isUserLoggedMatcher"
+                  (click)="undoMatch(act)" 
+                  class="btn btn-primary btn-block"
+                  [disabled]="act.act.idOwner === userLogged.id">Desfazer Match</button>  
               </app-panelactivity>
             </div>
         </div>             

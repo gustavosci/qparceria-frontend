@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import { API_CONFIG } from '../../config/api.config';
 import { MatchDTO } from '../../model/match.dto';
 import { MatchersDTO } from '../../model/matchers.dto';
+import { IsUserLoggedMatcherDTO } from '../../model/is-user-logged-matcher.dto';
 
 @Injectable()
 export class MatchService {
@@ -37,6 +38,10 @@ export class MatchService {
 
   matchersOfActivity(idAct: string) : Observable<MatchersDTO>{    
     return this.http.get<MatchersDTO>(`${API_CONFIG.urlBase}/matches/matchers/${idAct}`);       
+  }
+
+  isUserLoggedMatcher(idAct: string) : Observable<IsUserLoggedMatcherDTO>{    
+    return this.http.get<IsUserLoggedMatcherDTO>(`${API_CONFIG.urlBase}/matches/userlogged/${idAct}`);       
   }
 
 }

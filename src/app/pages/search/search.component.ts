@@ -13,6 +13,8 @@ import { SportDTO } from '../../model/sport.dto';
 import { UFService } from '../../services/domain/uf.service';
 import { UFDTO } from '../../model/uf.dto';
 import { CityDTO } from '../../model/city.dto';
+import { MatchService } from '../../services/domain/match.service';
+import { ActivitySearchDTO } from '../../model/activitysearch.dto';
 
 @Component({
   selector: 'app-search',
@@ -30,7 +32,7 @@ export class SearchComponent implements OnInit {
 
   ufs: UFDTO[];
   cities: CityDTO[];
-  acts: ActivitySimpleConsultDTO[] = [];
+  acts: ActivitySearchDTO[] = [];
   sports: SportDTO[];
   userLogged: LocalUser;
 
@@ -42,7 +44,8 @@ export class SearchComponent implements OnInit {
               public actService: ActivityService,
               public storage: StorageService,
               public ufService: UFService,
-              public sportService: SportService) {   
+              public sportService: SportService,
+              public matchService: MatchService) {   
   }
 
   ngOnInit() {
@@ -104,7 +107,8 @@ export class SearchComponent implements OnInit {
     .search(this.sportId, this.cityStartId, this.maxDistance, this.maxAverage, this.includesOwn)
     .subscribe(
         acts => {
-            this.acts = acts;
+            console.log(acts);
+            this.acts = acts;            
         },
         err => { 
            if(err.status === 403){
@@ -118,8 +122,49 @@ export class SearchComponent implements OnInit {
     this.router.navigate(['/consult/' + act]);    
   }
 
-  match(act: string){    
-    alert("nao impl");
+  match(act: ActivitySearchDTO){    
+    this.matchService
+      .insert(act.act.id)
+      .subscribe(
+        res => {
+          this.updateUserMatcherOfAct(act.act.id, false);
+          alert("Match realizado com sucesso! Aproveite a atividade :)");          
+        },
+        err => { 
+           if(err.status === 403){
+            this.router.navigate(['/login']);
+           }            
+        }
+    );
+  }
+
+  undoMatch(act: ActivitySearchDTO){    
+    this.matchService
+      .undo(act.act.id)
+      .subscribe(
+        res => {
+          this.updateUserMatcherOfAct(act.act.id, true);
+          alert("Match desfeito com sucesso! Encontre outras atividades :)");
+        },
+        err => { 
+           if(err.status === 403){
+            this.router.navigate(['/login']);
+           }            
+        }
+    );
+  }
+
+  private updateUserMatcherOfAct(idAct: string, undo: boolean){
+    this.acts.forEach((act) => {
+      if(act.act.id == idAct){
+        if(undo){
+          act.isUserLoggedMatcher = false;
+        } else {
+          act.isUserLoggedMatcher = true;
+        }
+        return;
+      }
+    })
   }
 
 }

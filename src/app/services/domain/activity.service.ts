@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Rx';
 import { StorageService } from '../storage.service';
 import { ActivitySimpleConsultDTO } from '../../model/activitysimpleconsult.dto';
 import { ActivityDomain } from '../../model/domain/activity.domain';
+import { ActivitySearchDTO } from '../../model/activitysearch.dto';
 
 @Injectable()
 export class ActivityService {
@@ -59,8 +60,8 @@ export class ActivityService {
         citystartid: string,
         maxDistance: string,
         maxAverage: string,
-        includesOwn: boolean) : Observable<ActivitySimpleConsultDTO[]>{    
-      return this.http.get<ActivitySimpleConsultDTO[]>(
+        includesOwn: boolean) : Observable<ActivitySearchDTO[]>{    
+      return this.http.get<ActivitySearchDTO[]>(
       `${API_CONFIG.urlBase}/activities/search?sport=${sportid}&citystart=${citystartid}&maxdistance=${maxDistance}&maxaverage=${maxAverage}&includesown=${includesOwn}`);
   }
 
