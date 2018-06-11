@@ -107,7 +107,6 @@ export class SearchComponent implements OnInit {
     .search(this.sportId, this.cityStartId, this.maxDistance, this.maxAverage, this.includesOwn)
     .subscribe(
         acts => {
-            console.log(acts);
             this.acts = acts;            
         },
         err => { 
@@ -128,6 +127,7 @@ export class SearchComponent implements OnInit {
       .subscribe(
         res => {
           this.updateUserMatcherOfAct(act.act.id, false);
+          this.reinderizaPage();
           alert("Match realizado com sucesso! Aproveite a atividade :)");          
         },
         err => { 
@@ -144,6 +144,7 @@ export class SearchComponent implements OnInit {
       .subscribe(
         res => {
           this.updateUserMatcherOfAct(act.act.id, true);
+          this.reinderizaPage();
           alert("Match desfeito com sucesso! Encontre outras atividades :)");
         },
         err => { 
@@ -158,13 +159,19 @@ export class SearchComponent implements OnInit {
     this.acts.forEach((act) => {
       if(act.act.id == idAct){
         if(undo){
-          act.isUserLoggedMatcher = false;
+          act.userLoggedMatcher = false;
         } else {
-          act.isUserLoggedMatcher = true;
+          act.userLoggedMatcher = true;
         }
         return;
       }
     })
+  }
+
+  private reinderizaPage(){
+    let acts = this.acts;
+    this.acts = null;
+    this.acts = acts;
   }
 
 }

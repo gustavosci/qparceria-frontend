@@ -92,11 +92,11 @@
                                   response={{act.act.nameOwner}}>
                 </app-simplelistact>
                 <button (click)="detailActivity(act.act.id)" class="btn btn-primary btn-block">Detalhes</button>  
-                <button *ngIf="!act.isUserLoggedMatcher"
+                <button *ngIf="!act.userLoggedMatcher"
                   (click)="match(act)" 
                   class="btn btn-primary btn-block" 
                   [disabled]="act.act.idOwner === userLogged.id">Match</button>  
-                <button *ngIf="act.isUserLoggedMatcher"
+                <button *ngIf="act.userLoggedMatcher"
                   (click)="undoMatch(act)" 
                   class="btn btn-primary btn-block"
                   [disabled]="act.act.idOwner === userLogged.id">Desfazer Match</button>  
