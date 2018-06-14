@@ -23,6 +23,7 @@ import { UserService } from './services/domain/user.service';
 import { ActivityService } from './services/domain/activity.service';
 import { UFService } from './services/domain/uf.service';
 import { MatchService } from './services/domain/match.service';
+import { FeedbackService } from './services/feedback.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorInterceptorProvider } from './interceptor/error-interceptor';
 import { StorageService } from './services/storage.service';
@@ -33,6 +34,7 @@ import { SportService } from './services/domain/sport.service';
 import { MatchReceivedComponent } from './pages/matchreceived/matchreceived.component';
 import { MatchProducedComponent } from './pages/matchproduced/matchproduced.component';
 import { MatchersComponent } from './pages/matchers/matchers.component';
+import { FeedbackComponent } from './pages/feedback/feedback.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { MatchersComponent } from './pages/matchers/matchers.component';
     ConsultComponent,
     MatchReceivedComponent,
     MatchProducedComponent,
-    MatchersComponent
+    MatchersComponent,
+    FeedbackComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ import { MatchersComponent } from './pages/matchers/matchers.component';
     StorageService,
     UFService,
     SportService,
-    MatchService
+    MatchService,
+    FeedbackService
   ],
   bootstrap: [AppComponent]
 })

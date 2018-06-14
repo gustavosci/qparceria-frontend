@@ -107,7 +107,10 @@ export class SearchComponent implements OnInit {
     .search(this.sportId, this.cityStartId, this.maxDistance, this.maxAverage, this.includesOwn)
     .subscribe(
         acts => {
-            this.acts = acts;            
+            this.acts = acts;       
+            if(!this.acts[0]){
+              alert("Não foram encontradas atividades para estes filtros :(")
+            }     
         },
         err => { 
            if(err.status === 403){

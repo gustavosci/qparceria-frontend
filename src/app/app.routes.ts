@@ -8,6 +8,7 @@ import { ConsultComponent } from './pages/consult/consult.component';
 import { MatchReceivedComponent } from './pages/matchreceived/matchreceived.component';
 import { MatchProducedComponent } from './pages/matchproduced/matchproduced.component';
 import { MatchersComponent } from './pages/matchers/matchers.component';
+import { FeedbackComponent } from './pages/feedback/feedback.component';
 
 // Uma constante que recebe um array do tipo Routes
 const appRoutes: Routes = [
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
     { path: 'match/received', component: MatchReceivedComponent },
     { path: 'match/produced', component: MatchProducedComponent },
     { path: 'matchers/:id', component: MatchersComponent },
+    { path: 'feedback', component: FeedbackComponent },
     { path: '**', component: HomeComponent }
 ];
 
